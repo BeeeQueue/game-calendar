@@ -9,7 +9,13 @@
         "ssr": true,
         "pure": true,
         "transpileTemplateLiterals": true,
-        "displayName": true
+        "displayName": true,
+        "topLevelImportPaths": [
+          "@xstyled/styled-components",
+          "@xstyled/styled-components/no-tags",
+          "@xstyled/styled-components/native",
+          "@xstyled/styled-components/primitives"
+        ]
       }
     ]
   ]

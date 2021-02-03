@@ -165,7 +165,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:7.12.5":
+"@babel/runtime@npm:7.12.5, @babel/runtime@npm:^7.11.2":
   version: 7.12.5
   resolution: "@babel/runtime@npm:7.12.5"
   dependencies:
@@ -403,6 +403,50 @@ __metadata:
     "@types/react": "*"
     csstype: ^3.0.2
   checksum: e0ce3949cbca71581288aac9b948c9943708f7ef20bdc030c8665f88f9e829b37ae7312979d9c949200aff99a704eb22e28f06b8c7bb50d4dbe1d01894762c99
+  languageName: node
+  linkType: hard
+
+"@xstyled/core@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@xstyled/core@npm:2.2.1"
+  dependencies:
+    "@babel/runtime": ^7.11.2
+    "@xstyled/system": ^2.2.1
+  checksum: 8915c64f8635bf950885ce0d29af1917351750d2e2c2b40ba9791aad256c9902d029332e24d6f6d9e2d4c9629d70c07db37d591fea3049e93b992241e38d4914
+  languageName: node
+  linkType: hard
+
+"@xstyled/styled-components@npm:2.2.1":
+  version: 2.2.1
+  resolution: "@xstyled/styled-components@npm:2.2.1"
+  dependencies:
+    "@babel/runtime": ^7.11.2
+    "@xstyled/core": ^2.2.1
+    "@xstyled/system": ^2.2.1
+    "@xstyled/util": ^2.0.0
+  peerDependencies:
+    styled-components: ^4.0.0 || ^5.0.0
+  checksum: af854a2a6e176a55a84ebbcbfd6895b70bc7be5113d21e94410a624595814b9612a19b3e890b3165791a419817ec07a5b3d0bde580bdb505627e5ef64e1702fd
+  languageName: node
+  linkType: hard
+
+"@xstyled/system@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@xstyled/system@npm:2.2.1"
+  dependencies:
+    "@babel/runtime": ^7.11.2
+    "@xstyled/util": ^2.0.0
+    csstype: ^3.0.6
+  checksum: 682938207ea3ee74292f90f01e22ddaf8011279430e36ce18181dc02063ee85676f68141fc0ab33d46c179dd8bf357de5cfe63af6f0b375f152c201ae8deaad6
+  languageName: node
+  linkType: hard
+
+"@xstyled/util@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@xstyled/util@npm:2.0.0"
+  dependencies:
+    "@babel/runtime": ^7.11.2
+  checksum: 5e3e56121f9720ba8f1801f7d671ac58a5eabf53bb5b54e0b8922abab9b167f5e9b3ddbb0dff415bfc3c75ea9ca6a18ff41115681c260ebc0c31303b778840b2
   languageName: node
   linkType: hard
 
@@ -1335,7 +1379,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2":
+"csstype@npm:^3.0.2, csstype@npm:^3.0.6":
   version: 3.0.6
   resolution: "csstype@npm:3.0.6"
   checksum: ebdca96d26e1af5604658e6876af29ac1e218750efb587684f2b2b13bb062a397b351586d285f911e6985e03112e56c2aee127d35ae7354cc7d25f3000e22556
@@ -1860,6 +1904,7 @@ fsevents@~2.3.1:
     "@types/react": 17.0.1
     "@types/react-dom": 17.0.0
     "@types/styled-components": 5.1.7
+    "@xstyled/styled-components": 2.2.1
     babel-plugin-styled-components: 1.12.0
     husky: 4.3.8
     lint-staged: 10.5.3
