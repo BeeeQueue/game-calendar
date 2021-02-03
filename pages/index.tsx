@@ -1,5 +1,16 @@
 import Head from "next/head"
+import styled from "styled-components"
+
 import styles from "../styles/Home.module.css"
+
+const Main = styled.main`
+  padding: 5rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 const Home = () => (
   <div className={styles.container}>
@@ -8,7 +19,7 @@ const Home = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main className={styles.main}>
+    <Main>
       <h1 className={styles.title}>
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
@@ -45,7 +56,7 @@ const Home = () => (
           <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
         </a>
       </div>
-    </main>
+    </Main>
 
     <footer className={styles.footer}>
       <a
