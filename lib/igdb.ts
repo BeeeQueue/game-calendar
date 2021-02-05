@@ -79,21 +79,21 @@ export const getReleases = async (options: {
   const response = await IgdbClient.post<Release[]>("release_dates", {
     body: `
 fields 
-  id,
-  category,
-  date,
-  platform,
-    game.id,
-    game.aggregated_rating,
-    game.name,
-    game.url,
-    game.platforms
+  id
+  ,category
+  ,date
+  ,platform
+    ,game.id
+    ,game.aggregated_rating
+    ,game.name
+    ,game.url
+    ,game.platforms
 ;
 limit 500;
 where
-  y = ${options.year} &
-  m = ${options.month} &
   game.aggregated_rating != null
+  & y = ${options.year} 
+  & m = ${options.month}
 ;
 sort date asc;
 
