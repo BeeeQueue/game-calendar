@@ -67,6 +67,10 @@ export type Release = {
     url: string
     platforms: Platform[]
     aggregated_rating?: number
+    cover?: {
+      id: string
+      url: string
+    }
   }
 }
 
@@ -88,6 +92,7 @@ fields
     ,game.name
     ,game.url
     ,game.platforms
+      ,game.cover.url
 ;
 limit 500;
 where

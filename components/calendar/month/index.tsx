@@ -33,16 +33,29 @@ export const MonthCalendar = ({ month, releases: allReleases }: Props) => {
           key={day}
           h={48}
           w={40}
-          backgroundImage={`https://unsplash.it/160/192?random=${day}`}
+          display="flex"
+          flexDirection="column"
+          // backgroundImage={`url(https://unsplash.it/160/192?random=${day})`}
         >
           {day + 1}
 
           <hr />
 
           {releasesByDay[day] &&
-            filterDuplicateGames(
-              releasesByDay[day]
-            ).map(({ game: { name } }) => name)}
+            filterDuplicateGames(releasesByDay[day]).slice(0, 3).map(
+              ({ game: { id, name, url, cover } }) => (
+                <x.a
+                  key={id}
+                  display="block"
+                  h={1}
+                  backgroundImage={cover?.url ? `url(${cover.url})` : undefined}
+                  href={url}
+                  target="_blank"
+                >
+                  {name}
+                </x.a>
+              )
+            )}
         </x.div>
       ))}
     </x.main>
