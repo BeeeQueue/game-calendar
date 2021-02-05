@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const month = new Date().getMonth()
+  const month = new Date().getMonth() + 1
 
   return {
     revalidate: 5,
