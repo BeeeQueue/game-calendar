@@ -1,17 +1,21 @@
+import { getDaysInMonth } from "date-fns"
 import { x } from "@xstyled/styled-components"
 
+import { Month } from "@/constants"
 import { Release } from "@/lib/igdb"
+import { filterDuplicateGames } from "@/utils"
 
-export const MonthCalendar = ({
-  releases: allReleases,
-}: {
+type Props = {
   releases: Release[]
-}) => {
+  month: Month
+}
+export const MonthCalendar = ({ month, releases: allReleases }: Props) => {
   const releasesByDay = allReleases.reduce((accum, release) => {
     const date = new Date(release.date * 1000)
     const day = date.getDay()
 
-    ;(accum[day] ??= []).push()
+    accum[day] ??= []
+    accum[day].push(release)
 
     return accum
   }, [] as Array<Release[]>)
@@ -24,7 +28,7 @@ export const MonthCalendar = ({
       gridAutoRows="auto"
       gap={5}
     >
-      {releasesByDay.map((releases, day) => (
+      {Array.from({ length: getDaysInMonth(month) }).map((_, day) => (
         <x.div
           key={day}
           h={48}
@@ -33,7 +37,12 @@ export const MonthCalendar = ({
         >
           {day + 1}
 
-          {releases.map(({ game: { name } }) => ({ name }))}
+          <hr />
+
+          {releasesByDay[day] &&
+            filterDuplicateGames(
+              releasesByDay[day]
+            ).map(({ game: { name } }) => name)}
         </x.div>
       ))}
     </x.main>

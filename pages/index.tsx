@@ -6,27 +6,30 @@ import { getReleases, Release } from "@/lib/igdb"
 import { Month } from "@/constants"
 
 type Props = {
+  month: Month
   releases: Release[]
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
+  const month = new Date().getMonth()
+
   return {
     revalidate: 5,
     props: {
-      releases:
-        (await getReleases({ year: 2021, month: Month.February })) ?? [],
+      month,
+      releases: (await getReleases({ year: 2021, month })) ?? [],
     },
   }
 }
 
-const Home = ({ releases }: Props) => (
+const Home = ({ month, releases }: Props) => (
   <>
     <Head>
       <title>Game Calendar</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <MonthCalendar releases={releases} />
+    <MonthCalendar releases={releases} month={month} />
   </>
 )
 
