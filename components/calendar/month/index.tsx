@@ -24,9 +24,10 @@ export const MonthCalendar = ({ month, releases: allReleases }: Props) => {
   return (
     <x.main
       container
+      h="100%"
       display="grid"
       gridTemplateColumns="repeat(7, 1fr)"
-      gridAutoRows="auto"
+      gridTemplateRows="repeat(5, 1fr)"
       gap={5}
     >
       {Array.from({ length: getDaysInMonth(month) }).map((_, day) => (

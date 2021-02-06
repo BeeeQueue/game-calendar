@@ -1,4 +1,5 @@
 {
   "semi": false,
-  "htmlWhitespaceSensitivity": "ignore"
+  "htmlWhitespaceSensitivity": "ignore",
+  "trailingComma": "all"
 }

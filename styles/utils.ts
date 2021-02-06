@@ -1,14 +1,20 @@
-import type { x } from "@xstyled/styled-components"
-import { ComponentPropsWithoutRef } from "react"
+import { css } from "styled-components"
 
-export const getBackgroundImage = (
-  theme: "light" | "dark",
-  blur: boolean
-): ComponentPropsWithoutRef<typeof x.div> => ({
-  backgroundColor: "warm-gray-900-a20",
-  backgroundImage: `url(/img/${theme === "light" ? "day" : "night"}.webp)`,
-  backgroundAttachment: "fixed",
-  backgroundPosition: "center",
-  backgroundSize: "cover",
-  style: blur ? { filter: "blur(6px) brightness(0.9)" } : undefined,
-})
+type Props = {
+  colorMode?: "light" | "dark"
+  blur?: boolean
+}
+
+export const backgroundImage = css<Props>`
+  background-image: url("/img/${(p) =>
+    p.colorMode === "light" ? "day" : "night"}.webp");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  ${(p) =>
+    p.blur
+      ? css`
+          filter: blur(6px) brightness(0.95);
+        `
+      : ""};
+`

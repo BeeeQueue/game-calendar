@@ -1,21 +1,28 @@
 const { PHASE_DEVELOPMENT_SERVER } = require("next/constants")
 
 module.exports = (phase, { defaultConfig }) => {
+  const config = {
+    ...defaultConfig,
+
+    reactStrictMode: true,
+    images: {
+      domains: ["images.igdb.com"],
+    },
+  }
+
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
-      reactStrictMode: true,
+      ...config,
 
-      webpack(config, { isServer }) {
+      webpack(webpack, { isServer }) {
         if (!isServer) {
           const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
-          config.plugins.push(new ForkTsCheckerWebpackPlugin())
+          webpack.plugins.push(new ForkTsCheckerWebpackPlugin())
         }
-        return config
+        return webpack
       },
     }
   }
 
-  return {
-    reactStrictMode: true,
-  }
+  return config
 }

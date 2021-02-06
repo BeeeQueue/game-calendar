@@ -1,14 +1,25 @@
 import { AppProps } from "next/app"
-import {
+import styled, {
   defaultTheme,
   Preflight,
   ThemeProvider,
-  x,
 } from "@xstyled/styled-components"
 
-import { getBackgroundImage } from "@/styles/utils"
+import { backgroundImage } from "@/styles/utils"
 
 import "@/styles/globals.css"
+
+const Root = styled.div`
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+
+  ${backgroundImage};
+`
 
 const theme = {
   ...defaultTheme,
@@ -17,19 +28,9 @@ const theme = {
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider theme={theme}>
     <Preflight />
-    <x.div
-      h="100%"
-      w="100%"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      background="gradient-to-r"
-      gradientTo="#0c0c0c"
-      gradientFrom="#111"
-      {...getBackgroundImage("light", false)}
-    >
+    <Root colorMode="light">
       <Component {...pageProps} />
-    </x.div>
+    </Root>
   </ThemeProvider>
 )
 
