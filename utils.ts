@@ -1,6 +1,6 @@
-import { Release } from "@/lib/igdb"
+import { ReleaseResponse } from "@/lib/igdb"
 
-export const filterDuplicateGames = (releases: Release[]) => {
+export const filterDuplicateGames = (releases: ReleaseResponse[]) => {
   const addedIds: number[] = []
 
   return releases.filter(({ game: { id } }) => {

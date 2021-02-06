@@ -56,7 +56,7 @@ export const IgdbClient = HttpClient.extend({
   },
 })
 
-export type Release = {
+export type ReleaseResponse = {
   id: number
   category: ReleaseDateCategory
   date: number
@@ -84,12 +84,12 @@ export type Release = {
 export const getReleases = async (options: {
   year: number
   month: Month
-}): Promise<Release[] | null> => {
+}): Promise<ReleaseResponse[] | null> => {
   console.log("Calling /release_dates...")
 
-  const response = await IgdbClient.post<Release[]>("release_dates", {
+  const response = await IgdbClient.post<ReleaseResponse[]>("release_dates", {
     body: `
-fields 
+fields
    category
   ,date
   ,platform

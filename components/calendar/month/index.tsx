@@ -2,13 +2,14 @@ import { getDaysInMonth } from "date-fns"
 import { x } from "@xstyled/styled-components"
 
 import { Month } from "@/constants"
-import { Release } from "@/lib/igdb"
+import { ReleaseResponse } from "@/lib/igdb"
 import { Day } from "@/components/calendar/month/day"
 
 type Props = {
-  releases: Release[]
+  releases: ReleaseResponse[]
   month: Month
 }
+
 export const MonthCalendar = ({ month, releases: allReleases }: Props) => {
   const releasesByDay = allReleases.reduce((accum, release) => {
     const date = new Date(release.date * 1000)
@@ -18,7 +19,7 @@ export const MonthCalendar = ({ month, releases: allReleases }: Props) => {
     accum[day].push(release)
 
     return accum
-  }, [] as Array<Release[]>)
+  }, [] as Array<ReleaseResponse[]>)
 
   return (
     <x.main

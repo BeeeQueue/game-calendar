@@ -1,11 +1,11 @@
 import { x } from "@xstyled/styled-components"
 
-import { Release } from "@/lib/igdb"
+import { ReleaseResponse } from "@/lib/igdb"
 import { filterDuplicateGames } from "@/utils"
 
 type Props = {
   index: number
-  releases: Release[]
+  releases: ReleaseResponse[]
 }
 
 export const Day = ({ index, releases }: Props) => {
