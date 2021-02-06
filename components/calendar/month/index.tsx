@@ -3,7 +3,7 @@ import { x } from "@xstyled/styled-components"
 
 import { Month } from "@/constants"
 import { Release } from "@/lib/igdb"
-import { filterDuplicateGames } from "@/utils"
+import { Day } from "@/components/calendar/month/day"
 
 type Props = {
   releases: Release[]
@@ -29,34 +29,7 @@ export const MonthCalendar = ({ month, releases: allReleases }: Props) => {
       gap={5}
     >
       {Array.from({ length: getDaysInMonth(month) }).map((_, day) => (
-        <x.div
-          key={day}
-          h={48}
-          w={40}
-          display="flex"
-          flexDirection="column"
-          // backgroundImage={`url(https://unsplash.it/160/192?random=${day})`}
-        >
-          {day + 1}
-
-          <hr />
-
-          {releasesByDay[day] &&
-            filterDuplicateGames(releasesByDay[day]).slice(0, 3).map(
-              ({ game: { id, name, url, cover } }) => (
-                <x.a
-                  key={id}
-                  display="block"
-                  h={1}
-                  backgroundImage={cover?.url ? `url(${cover.url})` : undefined}
-                  href={url}
-                  target="_blank"
-                >
-                  {name}
-                </x.a>
-              )
-            )}
-        </x.div>
+        <Day index={day} releases={releasesByDay[day]} />
       ))}
     </x.main>
   )

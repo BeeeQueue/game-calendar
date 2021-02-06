@@ -60,7 +60,14 @@ export type Release = {
   id: number
   category: ReleaseDateCategory
   date: number
-  platform: Platform
+  platform: {
+    id: number
+    name: string
+    platform_logo: {
+      id: number
+      url: string
+    }
+  }
   game: {
     id: number
     name: string
@@ -83,15 +90,14 @@ export const getReleases = async (options: {
   const response = await IgdbClient.post<Release[]>("release_dates", {
     body: `
 fields 
-  id
-  ,category
+   category
   ,date
   ,platform
-    ,game.id
+    ,platform.name
+      ,platform.platform_logo.url
     ,game.aggregated_rating
     ,game.name
     ,game.url
-    ,game.platforms
       ,game.cover.url
 ;
 limit 500;
