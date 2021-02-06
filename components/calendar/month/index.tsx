@@ -30,7 +30,7 @@ export const MonthCalendar = ({ month, releases: allReleases }: Props) => {
       gap={5}
     >
       {Array.from({ length: getDaysInMonth(month) }).map((_, day) => (
-        <Day index={day} releases={releasesByDay[day]} />
+        <Day key={day} index={day} releases={releasesByDay[day]} />
       ))}
     </x.main>
   )

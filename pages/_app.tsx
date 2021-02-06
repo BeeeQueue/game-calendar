@@ -6,6 +6,8 @@ import {
   x,
 } from "@xstyled/styled-components"
 
+import { getBackgroundImage } from "@/styles/utils"
+
 import "@/styles/globals.css"
 
 const theme = {
@@ -24,6 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
       background="gradient-to-r"
       gradientTo="#0c0c0c"
       gradientFrom="#111"
+      {...getBackgroundImage("light", false)}
     >
       <Component {...pageProps} />
     </x.div>

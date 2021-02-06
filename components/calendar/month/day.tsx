@@ -1,7 +1,9 @@
 import { x } from "@xstyled/styled-components"
 
 import { ReleaseResponse } from "@/lib/igdb"
+import { getBackgroundImage } from "@/styles/utils"
 import { filterDuplicateGames } from "@/utils"
+import { Game } from "./game"
 
 type Props = {
   index: number
@@ -10,31 +12,36 @@ type Props = {
 
 export const Day = ({ index, releases }: Props) => {
   return (
-    <x.div key={index} h={48} w={40} display="flex" flexDirection="column">
-      {/* @ts-ignore */}
-      <x.div paddingTop={3} paddingBottom={3} fontSize="xl" fontWeight="bold">
+    <x.div
+      key={index}
+      position="relative"
+      h={48}
+      w={40}
+      display="flex"
+      flexDirection="column"
+      borderRadius="lg"
+      overflow="hidden"
+    >
+      <x.div
+        position="absolute"
+        left="-5%"
+        top="-5%"
+        h="110%"
+        w="110%"
+        zIndex={0}
+        {...getBackgroundImage("light", true)}
+      />
+
+      <x.div p={4} fontSize="xl" fontWeight="bold" zIndex={1}>
         {index + 1}
       </x.div>
 
-      <hr />
-
-      {releases &&
-        filterDuplicateGames(releases)
-          .slice(0, 2)
-          .map(({ game: { id, name, url, cover } }) => (
-            <x.a
-              key={id}
-              display="block"
-              h={1}
-              background={
-                cover?.url ? `url(${cover.url}) center center` : undefined
-              }
-              href={url}
-              target="_blank"
-            >
-              {name}
-            </x.a>
-          ))}
+      <x.div display="flex" zIndex={2}>
+        {releases &&
+          filterDuplicateGames(releases)
+            .slice(0, 1)
+            .map((release) => <Game key={release.id} {...release} />)}
+      </x.div>
     </x.div>
   )
 }
