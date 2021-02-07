@@ -5,6 +5,7 @@ import styled, {
   ThemeProvider,
 } from "@xstyled/styled-components"
 
+import { Navigation } from "@/components/navigation"
 import { backgroundImage } from "@/styles/utils"
 
 import "@/styles/globals.css"
@@ -14,6 +15,7 @@ const Root = styled.div`
   width: 100vw;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow-y: auto;
@@ -30,6 +32,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
     <Preflight />
     <Root colorMode="light">
       <Component {...pageProps} />
+
+      <Navigation />
     </Root>
   </ThemeProvider>
 )
