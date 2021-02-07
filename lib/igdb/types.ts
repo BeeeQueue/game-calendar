@@ -1,6 +1,6 @@
 import { ReleaseDateCategory } from "@/constants"
 
-type Platform = {
+export type Platform = {
   id: number
   name: string
   platform_logo?: {

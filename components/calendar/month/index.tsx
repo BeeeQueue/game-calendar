@@ -15,6 +15,7 @@ export const MonthCalendar = ({ releases }: Props) => {
     <x.main
       container
       minHeight={0}
+      h="100%"
       paddingTop={6}
       // @ts-ignore
       paddingBottom={6}

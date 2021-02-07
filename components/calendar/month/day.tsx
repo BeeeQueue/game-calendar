@@ -43,6 +43,7 @@ export const Day = ({ dim, date, releases }: Props) => (
     <BlurredBackground blur colorMode="light" />
 
     <x.div
+      position="absolute"
       p={3}
       fontSize="1.75rem"
       fontWeight="900"
@@ -57,11 +58,9 @@ export const Day = ({ dim, date, releases }: Props) => (
       {date.getDate()}
     </x.div>
 
-    <x.div display="flex" zIndex={1}>
-      {releases &&
-        releases
-          .slice(0, 1)
-          .map((release) => <Game key={release.id} release={release} />)}
-    </x.div>
+    {releases &&
+      releases
+        .slice(0, 1)
+        .map((release) => <Game key={release.id} release={release} />)}
   </Container>
 )

@@ -1,19 +1,21 @@
-import { Fragment } from "react"
 import Image from "next/image"
+import { x } from "@xstyled/styled-components"
 
 import { Release } from "@/lib/igdb/types"
+import { PlatformLogos } from "@/components/platform-logos"
 
 type Props = {
-  release: Pick<Release, "id" | "game">
+  release: Pick<Release, "id" | "game" | "platforms">
 }
 
 export const Game = ({
   release: {
     id,
     game: { cover },
+    platforms,
   },
 }: Props) => (
-  <Fragment key={id}>
+  <x.div key={id} h="100%" w="100%" display="flex">
     {cover && (
       <Image
         src={`https:${cover.url.replace("t_thumb", "t_cover_big")}`}
@@ -21,5 +23,7 @@ export const Game = ({
         objectFit="cover"
       />
     )}
-  </Fragment>
+
+    <PlatformLogos platforms={platforms} />
+  </x.div>
 )
