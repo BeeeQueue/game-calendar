@@ -39,12 +39,12 @@ const groupReleasesByDay = (
   Array.from({
     length: differenceInDays(endDate, startDate),
   }).map((_, index) => {
-    const date = addDays(startDate, index)
+    const dayDate = addDays(startDate, index)
 
     return {
-      date: date.getTime(),
+      date: dayDate.getTime(),
       releases: releases.filter(({ date }) =>
-        isSameDay(date, new Date(date * 1000)),
+        isSameDay(dayDate, new Date(date * 1000)),
       ),
     }
   })
