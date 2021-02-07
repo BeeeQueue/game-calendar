@@ -1,3 +1,4 @@
+import { addDays, differenceInDays, isSameDay } from "date-fns"
 import { ReleaseResponse, Release } from "@/lib/igdb"
 
 const groupPlatformReleases = (
@@ -25,17 +26,22 @@ const groupPlatformReleases = (
     }, [] as Release[]),
   )
 
-const groupReleasesByDay = (releases: ReleaseResponse[]) =>
-  releases.reduce((accum, release) => {
-    const date = new Date(release.date * 1000)
-    const day = date.getDay()
+const groupReleasesByDay = (
+  releases: ReleaseResponse[],
+  startDate: Date,
+  endDate: Date,
+): Array<ReleaseResponse[]> =>
+  Array.from({
+    length: differenceInDays(endDate, startDate),
+  }).map((_, index) => {
+    const day = addDays(startDate, index)
 
-    accum[day] ??= []
-    accum[day].push(release)
-
-    return accum
-  }, [] as Array<ReleaseResponse[]>)
+    return releases.filter(({ date }) => isSameDay(day, new Date(date * 1000)))
+  })
 
 export const formatReleaseResponse = (
   releases: ReleaseResponse[],
-): Release[][] => groupPlatformReleases(groupReleasesByDay(releases))
+  startDate: Date,
+  endDate: Date,
+): Release[][] =>
+  groupPlatformReleases(groupReleasesByDay(releases, startDate, endDate))

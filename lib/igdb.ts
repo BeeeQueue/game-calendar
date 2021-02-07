@@ -1,3 +1,4 @@
+import { subDays, lastDayOfMonth, endOfDay, addDays } from "date-fns"
 import ms from "ms"
 import Cache from "node-cache"
 
@@ -109,6 +110,16 @@ export const getReleases = async (options: {
 
   console.log("Calling /release_dates...")
 
+  const firstDayInMonth = new Date(`${options.year}-${options.month}-1`)
+  // getDay gets day of week 0-6 - so we use it as days we need to show before it
+  const daysBefore = firstDayInMonth.getDay()
+  const firstDateToFetch = subDays(firstDayInMonth, daysBefore)
+
+  const lastDayInMonth = lastDayOfMonth(firstDayInMonth)
+  // getDay gets day of week 0-6 - so we use it as days we need to show before it
+  const daysAfter = 6 - lastDayInMonth.getDay()
+  const lastDateToFetch = endOfDay(addDays(lastDayInMonth, daysAfter))
+
   const response = await IgdbClient.post<ReleaseResponse[]>("release_dates", {
     body: `
 fields
@@ -124,9 +135,9 @@ fields
 ;
 limit 500;
 where
-  game.aggregated_rating != null
-  & y = ${options.year} 
-  & m = ${options.month}
+    game.aggregated_rating != null
+  & date >= ${Math.round(firstDateToFetch.getTime() / 1000)}
+  & date <= ${Math.round(lastDateToFetch.getTime() / 1000)}
 ;
 sort date asc;
 
@@ -138,7 +149,11 @@ sort date asc;
     return null
   }
 
-  const releases = formatReleaseResponse(response.body)
+  const releases = formatReleaseResponse(
+    response.body,
+    firstDateToFetch,
+    lastDateToFetch,
+  )
 
   ReleaseCache.set(getCacheKey(options.year, options.month), releases)
 
