@@ -110,7 +110,6 @@ limit 500;
 where
     game.cover.url != null
   & game.total_rating != null
-  & game.platforms = (6,14,48,49,130,167,169)
   & date >= ${Math.round(firstDateToFetch.getTime() / 1000)}
   & date <= ${Math.round(lastDateToFetch.getTime() / 1000)}
 ;

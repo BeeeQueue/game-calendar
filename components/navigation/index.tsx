@@ -8,7 +8,9 @@ export const Navigation = () => {
   const { push, query } = useRouter()
 
   const value = Array.isArray(query?.month) ? query?.month[0] : query?.month
-  const [month, setMonth] = useState(getMonth(value) ?? new Date().getMonth() + 1)
+  const [month, setMonth] = useState(
+    getMonth(value) ?? new Date().getMonth() + 1,
+  )
 
   useEffect(() => {
     const value = Number(
@@ -27,7 +29,15 @@ export const Navigation = () => {
   )
 
   return (
-    <x.nav p={4} display="flex" justifyContent="center">
+    <x.nav
+      h={20}
+      w="100%"
+      marginTop="auto"
+      flexShrink={0}
+      display="flex"
+      justifyContent="center"
+      backgroundColor="warm-gray-300-a20"
+    >
       <select onChange={updateParams} value={month}>
         {Array.from({ length: 12 }).map((_, value) => (
           <option value={value + 1}>{value + 1}</option>

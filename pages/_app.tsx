@@ -16,9 +16,8 @@ const Root = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  overflow-y: auto;
+  overflow: hidden;
 
   ${backgroundImage};
 `

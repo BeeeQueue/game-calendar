@@ -3,7 +3,7 @@ import { ReleaseDateCategory } from "@/constants"
 type Platform = {
   id: number
   name: string
-  platform_logo: {
+  platform_logo?: {
     id: number
     url: string
   }

@@ -14,10 +14,13 @@ export const MonthCalendar = ({ releases }: Props) => {
   return (
     <x.main
       container
-      h="100%"
+      minHeight={0}
+      paddingTop={6}
+      // @ts-ignore
+      paddingBottom={6}
       display="grid"
       gridTemplateColumns="repeat(7, minmax(125px, 180px))"
-      gridTemplateRows={`repeat(${weeks}, minmax(125px, 1fr))`}
+      gridTemplateRows={`repeat(${weeks}, 1fr)`}
       gap={5}
     >
       {releases.map(({ date, releases }) => (
