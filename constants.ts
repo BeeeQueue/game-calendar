@@ -20,15 +20,6 @@ export enum Region {
   Worldwide = 8,
 }
 
-export enum Platform {
-  Console = 1,
-  Arcade = 2,
-  Platform = 3,
-  OperatingSystem = 4,
-  PortableConsole = 5,
-  Computer = 6,
-}
-
 export enum Month {
   January = 1,
   February = 2,
