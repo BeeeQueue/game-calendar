@@ -20,7 +20,7 @@ const groupPlatformReleases = (releasesByDay: ReleasesByDay<ReleaseResponse>) =>
           ...accum,
           {
             ...release,
-            platforms: [release.platform],
+            platforms: [release.platform].filter(Boolean),
           },
         ]
       }
@@ -30,6 +30,20 @@ const groupPlatformReleases = (releasesByDay: ReleasesByDay<ReleaseResponse>) =>
       return accum
     }, [] as Release[]),
   }))
+
+const sortByHypeAndScore = (a: ReleaseResponse, b: ReleaseResponse): number => {
+  if (a.game.aggregated_rating == null || b.game.aggregated_rating == null) {
+    if (a.game.hypes != null || b.game.hypes != null) {
+      return (b.game.hypes ?? -1) - (a.game.hypes ?? -1)
+    }
+
+    if (a.game.aggregated_rating == null) return 1
+
+    if (b.game.aggregated_rating == null) return -1
+  }
+
+  return b.game.aggregated_rating - a.game.aggregated_rating
+}
 
 const groupReleasesByDay = (
   releases: ReleaseResponse[],
@@ -43,9 +57,9 @@ const groupReleasesByDay = (
 
     return {
       date: dayDate.getTime(),
-      releases: releases.filter(({ date }) =>
-        isSameDay(dayDate, new Date(date * 1000)),
-      ),
+      releases: releases
+        .filter(({ date }) => isSameDay(dayDate, new Date(date * 1000)))
+        .sort(sortByHypeAndScore),
     }
   })
 

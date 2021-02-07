@@ -100,14 +100,17 @@ fields
   ,platform
     ,platform.name
       ,platform.platform_logo.url
-    ,game.aggregated_rating
     ,game.name
     ,game.url
+    ,game.aggregated_rating
+    ,game.hypes
       ,game.cover.url
 ;
 limit 500;
 where
-    game.aggregated_rating != null
+    game.cover.url != null
+  & game.total_rating != null
+  & game.platforms = (6,14,48,49,130,167,169)
   & date >= ${Math.round(firstDateToFetch.getTime() / 1000)}
   & date <= ${Math.round(lastDateToFetch.getTime() / 1000)}
 ;

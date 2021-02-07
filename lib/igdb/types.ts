@@ -19,6 +19,7 @@ export type ReleaseResponse = {
     name: string
     url: string
     aggregated_rating?: number
+    hypes?: number
     cover?: {
       id: string
       url: string

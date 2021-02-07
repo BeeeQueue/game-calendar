@@ -12,16 +12,14 @@ export const Game = ({
     id,
     game: { cover },
   },
-}: Props) => {
-  return (
-    <Fragment key={id}>
-      {cover && (
-        <Image
-          src={`https:${cover.url.replace("t_thumb", "t_cover_big")}`}
-          layout="fill"
-          objectFit="cover"
-        />
-      )}
-    </Fragment>
-  )
-}
+}: Props) => (
+  <Fragment key={id}>
+    {cover && (
+      <Image
+        src={`https:${cover.url.replace("t_thumb", "t_cover_big")}`}
+        layout="fill"
+        objectFit="cover"
+      />
+    )}
+  </Fragment>
+)
