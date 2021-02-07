@@ -1,5 +1,5 @@
 import { addDays, differenceInDays, isSameDay } from "date-fns"
-import { ReleaseResponse, Release } from "@/lib/igdb"
+import { Release, ReleaseResponse } from "@/lib/igdb/types"
 
 const groupPlatformReleases = (
   releasesByDay: Array<ReleaseResponse[]>,

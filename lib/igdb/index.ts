@@ -1,11 +1,12 @@
-import { subDays, lastDayOfMonth, endOfDay, addDays } from "date-fns"
+import { addDays, endOfDay, lastDayOfMonth, subDays } from "date-fns"
 import ms from "ms"
 import Cache from "node-cache"
 
 import { config } from "@/config"
-import { Month, ReleaseDateCategory } from "@/constants"
+import { Month } from "@/constants"
 import { HttpClient } from "@/lib/http"
 import { formatReleaseResponse } from "@/lib/igdb/utils"
+import { Release, ReleaseResponse } from "@/lib/igdb/types"
 
 const ReleaseCache = new Cache({
   stdTTL: 12 * 60 * 60,
@@ -63,36 +64,6 @@ export const IgdbClient = HttpClient.extend({
     ],
   },
 })
-
-type Platform = {
-  id: number
-  name: string
-  platform_logo: {
-    id: number
-    url: string
-  }
-}
-
-export type ReleaseResponse = {
-  id: number
-  category: ReleaseDateCategory
-  date: number
-  platform: Platform
-  game: {
-    id: number
-    name: string
-    url: string
-    aggregated_rating?: number
-    cover?: {
-      id: string
-      url: string
-    }
-  }
-}
-
-export type Release = Omit<ReleaseResponse, "platform"> & {
-  platforms: Platform[]
-}
 
 export const getReleases = async (options: {
   year: number

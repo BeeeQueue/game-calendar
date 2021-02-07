@@ -1,9 +1,8 @@
-import { getDaysInMonth } from "date-fns"
 import { x } from "@xstyled/styled-components"
 
 import { Month } from "@/constants"
-import { Release } from "@/lib/igdb"
 import { Day } from "@/components/calendar/month/day"
+import { Release } from "@/lib/igdb/types"
 
 type Props = {
   releases: Release[][]
@@ -20,8 +19,8 @@ export const MonthCalendar = ({ month, releases }: Props) => {
       gridTemplateRows="repeat(6, minmax(125px, 1fr))"
       gap={5}
     >
-      {Array.from({ length: getDaysInMonth(month) }).map((_, day) => (
-        <Day key={day} index={day} releases={releases[day]} />
+      {releases.map((releases, index) => (
+        <Day key={index} date={} releases={releases[day]} />
       ))}
     </x.main>
   )

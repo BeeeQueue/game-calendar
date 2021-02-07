@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import Image from "next/image"
 
-import { Release } from "@/lib/igdb"
+import { Release } from "@/lib/igdb/types"
 
 type Props = {
   release: Pick<Release, "id" | "game">

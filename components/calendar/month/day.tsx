@@ -1,8 +1,8 @@
 import styled, { css, x } from "@xstyled/styled-components"
 
-import { Release } from "@/lib/igdb"
 import { backgroundImage } from "@/styles/utils"
 import { Game } from "./game"
+import { Release } from "@/lib/igdb/types"
 
 const Container = styled.div<{ dim?: boolean }>`
   position: relative;
@@ -33,13 +33,13 @@ const BlurredBackground = styled.div.attrs({
 `
 
 type Props = {
-  index: number
+  date: Date
   dim?: boolean
   releases?: Release[]
 }
 
-export const Day = ({ dim, index, releases }: Props) => (
-  <Container dim={dim} key={index}>
+export const Day = ({ dim, date, releases }: Props) => (
+  <Container dim={dim} key={date.getTime()}>
     <BlurredBackground blur colorMode="light" />
 
     <x.div
@@ -54,7 +54,7 @@ export const Day = ({ dim, index, releases }: Props) => (
         WebkitTextFillColor: "white",
       }}
     >
-      {index + 1}
+      {date.getDay()}
     </x.div>
 
     <x.div display="flex" zIndex={1}>
