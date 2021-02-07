@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@xstyled/styled-components": "2.2.1",
-    "date-fns": "2.16.1",
+    "date-fns": "2.17.0",
     "envsafe": "2.0.2",
     "got": "11.8.1",
     "ms": "2.1.3",

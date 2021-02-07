@@ -34,3 +34,6 @@ export enum Month {
   November = 11,
   December = 12,
 }
+
+export const getMonth = (input?: number | string): Month | null =>
+  (Month[input as any] ?? null) as any

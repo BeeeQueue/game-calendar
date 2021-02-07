@@ -7,25 +7,20 @@ import { Month } from "@/constants"
 const months = Object.values(Month).filter((v) => typeof v === "string")
 
 export const Navigation = () => {
-  const { query, push } = useRouter()
+  const { push, query } = useRouter()
 
   const [month, setMonth] = useState<Month>(new Date().getMonth() + 1)
 
   useEffect(() => {
-    setMonth(
-      Month[
-        (Array.isArray(query.month) ? query.month[0] : query.month) as any
-      ] as any,
-    )
+    const value = Number(Array.isArray(query.month) ? query.month[0] : query.month)
+    if (isNaN(value)) return
+
+    setMonth(value)
   }, [query.month])
 
   const updateParams = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
-      void push({
-        search: new URLSearchParams({
-          month: Month[Number(e.currentTarget.value) as Month],
-        }).toString(),
-      })
+      void push(`/2021/${Number(e.currentTarget.value)}`)
     },
     [push],
   )

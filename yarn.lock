@@ -71,7 +71,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/code-frame@npm:7.12.11, @babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.10.4, @babel/code-frame@npm:^7.12.11":
+"@babel/code-frame@npm:7.12.11":
   version: 7.12.11
   resolution: "@babel/code-frame@npm:7.12.11"
   dependencies:
@@ -80,7 +80,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/code-frame@npm:^7.8.3":
+"@babel/code-frame@npm:^7.0.0, @babel/code-frame@npm:^7.10.4, @babel/code-frame@npm:^7.12.11, @babel/code-frame@npm:^7.8.3":
   version: 7.12.13
   resolution: "@babel/code-frame@npm:7.12.13"
   dependencies:
@@ -147,25 +147,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-validator-identifier@npm:^7.10.4, @babel/helper-validator-identifier@npm:^7.12.11":
+"@babel/helper-validator-identifier@npm:^7.12.11":
   version: 7.12.11
   resolution: "@babel/helper-validator-identifier@npm:7.12.11"
   checksum: 18de432203264b501db2690b53370a4289dc56084f5a2c66de624b159ee28b8abaeb402b2b7584296d9261645d91ddb6bfd21125d3ffd9bf02e9262e77baf3d2
   languageName: node
   linkType: hard
 
-"@babel/highlight@npm:^7.10.4":
-  version: 7.10.4
-  resolution: "@babel/highlight@npm:7.10.4"
-  dependencies:
-    "@babel/helper-validator-identifier": ^7.10.4
-    chalk: ^2.0.0
-    js-tokens: ^4.0.0
-  checksum: c167b938af9797e7630dd922398ceb1a079469085b9c0a7274f093f9f2b1ef9f0a5efec89592e81cbab7c87a537d32c238cea97d288b7af9a0d26b2bceb7a439
-  languageName: node
-  linkType: hard
-
-"@babel/highlight@npm:^7.12.13":
+"@babel/highlight@npm:^7.10.4, @babel/highlight@npm:^7.12.13":
   version: 7.12.13
   resolution: "@babel/highlight@npm:7.12.13"
   dependencies:
@@ -1563,10 +1552,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:2.16.1":
-  version: 2.16.1
-  resolution: "date-fns@npm:2.16.1"
-  checksum: fbe5d9aa1dc4c92c7cf9c0b31e58f532ac9fe059f85fc622641b1ac9c673150329620ea6bf941a8ba10e8e677aa0b6ccdc04ce001f81e70fd49acd1760edcba0
+"date-fns@npm:2.17.0":
+  version: 2.17.0
+  resolution: "date-fns@npm:2.17.0"
+  checksum: 51ee9e264aac54d2a16471691d560838bad681f729573f520b03ec0c21f28904c73bf98ec2d33603e71bdabf8506140449c2b50d0db6fdd042faed9fe5467b92
   languageName: node
   linkType: hard
 
@@ -2135,7 +2124,7 @@ fsevents@~2.3.1:
     "@types/styled-components": 5.1.7
     "@xstyled/styled-components": 2.2.1
     babel-plugin-styled-components: 1.12.0
-    date-fns: 2.16.1
+    date-fns: 2.17.0
     envsafe: 2.0.2
     fork-ts-checker-webpack-plugin: 6.1.0
     got: 11.8.1
