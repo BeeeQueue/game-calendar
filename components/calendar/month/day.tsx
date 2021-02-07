@@ -51,7 +51,7 @@ export const Day = ({ dim, index, releases }: Props) => (
       zIndex={2}
       style={{
         WebkitTextStroke: "1px black",
-        WebkitTextStrokeColor: "white",
+        WebkitTextFillColor: "white",
       }}
     >
       {index + 1}

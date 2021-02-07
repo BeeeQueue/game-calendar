@@ -16,8 +16,8 @@ export const MonthCalendar = ({ month, releases }: Props) => {
       container
       h="100%"
       display="grid"
-      gridTemplateColumns="repeat(7, 1fr)"
-      gridTemplateRows="repeat(5, 1fr)"
+      gridTemplateColumns="repeat(7, minmax(125px, 180px))"
+      gridTemplateRows="repeat(6, minmax(125px, 1fr))"
       gap={5}
     >
       {Array.from({ length: getDaysInMonth(month) }).map((_, day) => (
