@@ -1,12 +1,11 @@
 import { x } from "@xstyled/styled-components"
 
-import { Month } from "@/constants"
 import { Day } from "@/components/calendar/month/day"
 import { ReleasesByDay } from "@/lib/igdb/types"
 
 type Props = {
   releases: ReleasesByDay
-  month: Month
+  month: number
 }
 
 export const MonthCalendar = ({ releases }: Props) => {

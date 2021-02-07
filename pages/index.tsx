@@ -2,17 +2,20 @@ import { format } from "date-fns"
 import { GetStaticProps } from "next"
 import Head from "next/head"
 
-import { getMonth, Month } from "@/constants"
 import { MonthCalendar } from "@/components/calendar/month"
 import { getReleases } from "@/lib/igdb"
 import { ReleasesByDay } from "@/lib/igdb/types"
+import { getMonth } from "@/utils"
 
 type Props = {
-  month: Month
+  month: number
   releases: ReleasesByDay
 }
 
-export const getStaticProps: GetStaticProps<Props, {month: string, year: string;}> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<
+  Props,
+  { month: string; year: string }
+> = async ({ params }) => {
   const month = getMonth(params?.month) ?? new Date().getMonth() + 1
 
   return {
@@ -28,8 +31,8 @@ const HomePage = ({ month, releases }: Props) => (
   <>
     <Head>
       <title>
-        {format(new Date(`2021-${Month[month]}-1`), "MMM yyyy")} - Game
-        Release Calendar
+        {format(new Date(`2021-${month}-1`), "MMM yyyy")} - Game Release
+        Calendar
       </title>
       <link rel="icon" href="/favicon.ico" />
     </Head>

@@ -3,7 +3,6 @@ import ms from "ms"
 import Cache from "node-cache"
 
 import { config } from "@/config"
-import { Month } from "@/constants"
 import { HttpClient } from "@/lib/http"
 import { formatReleaseResponse, getWeekday } from "@/lib/igdb/utils"
 import { ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
@@ -11,7 +10,7 @@ import { ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
 const ReleaseCache = new Cache({
   stdTTL: 12 * 60 * 60,
 })
-const getCacheKey = (year: number, month: Month) => `${year}-${month}`
+const getCacheKey = (year: number, month: number) => `${year}-${month}`
 
 let token: string | null = process.env.TOKEN || null
 
@@ -67,7 +66,7 @@ export const IgdbClient = HttpClient.extend({
 
 export const getReleases = async (options: {
   year: number
-  month: Month
+  month: number
 }): Promise<ReleasesByDay | null> => {
   console.log(`Loading releases ${options.year}-${options.month}`)
 
