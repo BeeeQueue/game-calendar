@@ -1,10 +1,10 @@
 import { Fragment } from "react"
 import Image from "next/image"
 
-import { ReleaseResponse } from "@/lib/igdb"
+import { Release } from "@/lib/igdb"
 
 type Props = {
-  release: Pick<ReleaseResponse, "id" | "game" | "platform">
+  release: Pick<Release, "id" | "game">
 }
 
 export const Game = ({

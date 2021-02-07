@@ -2,12 +2,12 @@ import Head from "next/head"
 
 import { MonthCalendar } from "@/components/calendar/month"
 import { GetStaticProps } from "next"
-import { getReleases, ReleaseResponse } from "@/lib/igdb"
+import { getReleases, Release } from "@/lib/igdb"
 import { Month } from "@/constants"
 
 type Props = {
   month: Month
-  releases: ReleaseResponse[]
+  releases: Release[][]
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {

@@ -1,17 +1,22 @@
-import styled, { x } from "@xstyled/styled-components"
+import styled, { css, x } from "@xstyled/styled-components"
 
-import { ReleaseResponse } from "@/lib/igdb"
+import { Release } from "@/lib/igdb"
 import { backgroundImage } from "@/styles/utils"
-import { filterDuplicateGames } from "@/utils"
 import { Game } from "./game"
 
-const Container = styled.div`
+const Container = styled.div<{ dim?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: lg;
   box-shadow: lg;
   overflow: hidden;
+
+  ${(p) =>
+    p.dim &&
+    css`
+      opacity: 0.5;
+    `};
 `
 
 const BlurredBackground = styled.div.attrs({
@@ -29,38 +34,34 @@ const BlurredBackground = styled.div.attrs({
 
 type Props = {
   index: number
-  releases?: ReleaseResponse[]
+  dim?: boolean
+  releases?: Release[]
 }
 
-export const Day = ({ index, releases }: Props) => {
-  const filteredReleases = filterDuplicateGames(releases ?? [])
+export const Day = ({ dim, index, releases }: Props) => (
+  <Container dim={dim} key={index}>
+    <BlurredBackground blur colorMode="light" />
 
-  return (
-    <Container key={index}>
-      <BlurredBackground blur colorMode="light" />
+    <x.div
+      p={3}
+      fontSize="1.75rem"
+      fontWeight="900"
+      color="white"
+      userSelect="none"
+      zIndex={2}
+      style={{
+        WebkitTextStroke: "1px black",
+        WebkitTextStrokeColor: "white",
+      }}
+    >
+      {index + 1}
+    </x.div>
 
-      <x.div
-        p={3}
-        fontSize="1.75rem"
-        fontWeight="900"
-        color="white"
-        userSelect="none"
-        zIndex={2}
-        style={{
-          // @ts-ignore
-          "-webkit-text-stroke": "1px black",
-          "-webkit-text-fill-color": "white",
-        }}
-      >
-        {index + 1}
-      </x.div>
-
-      <x.div display="flex" zIndex={1}>
-        {filteredReleases.length > 0 &&
-          filteredReleases
-            .slice(0, 1)
-            .map((release) => <Game key={release.id} release={release} />)}
-      </x.div>
-    </Container>
-  )
-}
+    <x.div display="flex" zIndex={1}>
+      {releases &&
+        releases
+          .slice(0, 1)
+          .map((release) => <Game key={release.id} release={release} />)}
+    </x.div>
+  </Container>
+)

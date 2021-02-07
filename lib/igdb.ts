@@ -1,8 +1,15 @@
 import ms from "ms"
+import Cache from "node-cache"
 
 import { config } from "@/config"
-import { Month, Platform, ReleaseDateCategory } from "@/constants"
+import { Month, ReleaseDateCategory } from "@/constants"
 import { HttpClient } from "@/lib/http"
+import { formatReleaseResponse } from "@/lib/igdb/utils"
+
+const ReleaseCache = new Cache({
+  stdTTL: 12 * 60 * 60,
+})
+const getCacheKey = (year: number, month: Month) => `${year}-${month}`
 
 let token: string | null = process.env.TOKEN || null
 
@@ -28,8 +35,8 @@ const refreshToken = async () => {
 
   console.log(
     `Got new token, expires in ${ms(refreshIn)} - ${new Date(
-      Date.now() + refreshIn
-    ).toString()}`
+      Date.now() + refreshIn,
+    ).toString()}`,
   )
 }
 
@@ -56,23 +63,24 @@ export const IgdbClient = HttpClient.extend({
   },
 })
 
+type Platform = {
+  id: number
+  name: string
+  platform_logo: {
+    id: number
+    url: string
+  }
+}
+
 export type ReleaseResponse = {
   id: number
   category: ReleaseDateCategory
   date: number
-  platform: {
-    id: number
-    name: string
-    platform_logo: {
-      id: number
-      url: string
-    }
-  }
+  platform: Platform
   game: {
     id: number
     name: string
     url: string
-    platforms: Platform[]
     aggregated_rating?: number
     cover?: {
       id: string
@@ -81,10 +89,24 @@ export type ReleaseResponse = {
   }
 }
 
+export type Release = Omit<ReleaseResponse, "platform"> & {
+  platforms: Platform[]
+}
+
 export const getReleases = async (options: {
   year: number
   month: Month
-}): Promise<ReleaseResponse[] | null> => {
+}): Promise<Release[][] | null> => {
+  console.log(`Loading releases ${options.year}-${options.month}`)
+
+  if (ReleaseCache.has(getCacheKey(options.year, options.month))) {
+    console.log(`Found in cache...`)
+
+    return ReleaseCache.get<Release[][]>(
+      getCacheKey(options.year, options.month),
+    )!
+  }
+
   console.log("Calling /release_dates...")
 
   const response = await IgdbClient.post<ReleaseResponse[]>("release_dates", {
@@ -116,5 +138,9 @@ sort date asc;
     return null
   }
 
-  return response.body
+  const releases = formatReleaseResponse(response.body)
+
+  ReleaseCache.set(getCacheKey(options.year, options.month), releases)
+
+  return releases
 }
