@@ -8,6 +8,7 @@ type Platform = {
     url: string
   }
 }
+
 export type ReleaseResponse = {
   id: number
   category: ReleaseDateCategory
@@ -24,6 +25,12 @@ export type ReleaseResponse = {
     }
   }
 }
+
 export type Release = Omit<ReleaseResponse, "platform"> & {
   platforms: Platform[]
 }
+
+export type ReleasesByDay<R = Release> = Array<{
+  date: number
+  releases: R[]
+}>

@@ -1,11 +1,16 @@
 import { addDays, differenceInDays, isSameDay } from "date-fns"
-import { Release, ReleaseResponse } from "@/lib/igdb/types"
+import { Release, ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
 
-const groupPlatformReleases = (
-  releasesByDay: Array<ReleaseResponse[]>,
-): Release[][] =>
-  releasesByDay.map((day) =>
-    day.reduce((accum, release) => {
+export const getWeekday = (date: Date) => {
+  const day = date.getDay()
+
+  return day === 0 ? 6 : day - 1
+}
+
+const groupPlatformReleases = (releasesByDay: ReleasesByDay<ReleaseResponse>) =>
+  releasesByDay.map(({ date, releases }) => ({
+    date,
+    releases: releases.reduce((accum, release) => {
       const existingIndex = accum.findIndex(
         ({ game }) => game.id === release.game.id,
       )
@@ -24,24 +29,29 @@ const groupPlatformReleases = (
 
       return accum
     }, [] as Release[]),
-  )
+  }))
 
 const groupReleasesByDay = (
   releases: ReleaseResponse[],
   startDate: Date,
   endDate: Date,
-): Array<ReleaseResponse[]> =>
+): ReleasesByDay<ReleaseResponse> =>
   Array.from({
     length: differenceInDays(endDate, startDate),
   }).map((_, index) => {
-    const day = addDays(startDate, index)
+    const date = addDays(startDate, index)
 
-    return releases.filter(({ date }) => isSameDay(day, new Date(date * 1000)))
+    return {
+      date: date.getTime(),
+      releases: releases.filter(({ date }) =>
+        isSameDay(date, new Date(date * 1000)),
+      ),
+    }
   })
 
 export const formatReleaseResponse = (
   releases: ReleaseResponse[],
   startDate: Date,
   endDate: Date,
-): Release[][] =>
+): ReleasesByDay =>
   groupPlatformReleases(groupReleasesByDay(releases, startDate, endDate))

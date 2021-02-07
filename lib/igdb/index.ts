@@ -1,12 +1,12 @@
-import { addDays, endOfDay, lastDayOfMonth, subDays } from "date-fns"
+import { addDays, lastDayOfMonth, startOfDay, subDays } from "date-fns"
 import ms from "ms"
 import Cache from "node-cache"
 
 import { config } from "@/config"
 import { Month } from "@/constants"
 import { HttpClient } from "@/lib/http"
-import { formatReleaseResponse } from "@/lib/igdb/utils"
-import { Release, ReleaseResponse } from "@/lib/igdb/types"
+import { formatReleaseResponse, getWeekday } from "@/lib/igdb/utils"
+import { ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
 
 const ReleaseCache = new Cache({
   stdTTL: 12 * 60 * 60,
@@ -68,28 +68,30 @@ export const IgdbClient = HttpClient.extend({
 export const getReleases = async (options: {
   year: number
   month: Month
-}): Promise<Release[][] | null> => {
+}): Promise<ReleasesByDay | null> => {
   console.log(`Loading releases ${options.year}-${options.month}`)
 
   if (ReleaseCache.has(getCacheKey(options.year, options.month))) {
     console.log(`Found in cache...`)
 
-    return ReleaseCache.get<Release[][]>(
+    return ReleaseCache.get<ReleasesByDay>(
       getCacheKey(options.year, options.month),
     )!
   }
 
-  console.log("Calling /release_dates...")
-
   const firstDayInMonth = new Date(`${options.year}-${options.month}-1`)
   // getDay gets day of week 0-6 - so we use it as days we need to show before it
-  const daysBefore = firstDayInMonth.getDay()
+  const daysBefore = getWeekday(firstDayInMonth)
   const firstDateToFetch = subDays(firstDayInMonth, daysBefore)
 
   const lastDayInMonth = lastDayOfMonth(firstDayInMonth)
   // getDay gets day of week 0-6 - so we use it as days we need to show before it
-  const daysAfter = 6 - lastDayInMonth.getDay()
-  const lastDateToFetch = endOfDay(addDays(lastDayInMonth, daysAfter))
+  const daysAfter = 6 - getWeekday(lastDayInMonth)
+  const lastDateToFetch = startOfDay(addDays(lastDayInMonth, daysAfter + 1))
+
+  console.log(
+    `Calling /release_dates...\n${firstDateToFetch.toISOString()}\n${lastDateToFetch.toISOString()}`,
+  )
 
   const response = await IgdbClient.post<ReleaseResponse[]>("release_dates", {
     body: `

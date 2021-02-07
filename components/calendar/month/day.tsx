@@ -54,7 +54,7 @@ export const Day = ({ dim, date, releases }: Props) => (
         WebkitTextFillColor: "white",
       }}
     >
-      {date.getDay()}
+      {date.getDate()}
     </x.div>
 
     <x.div display="flex" zIndex={1}>
