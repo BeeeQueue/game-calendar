@@ -16,7 +16,13 @@ export const getServerSideProps: GetServerSideProps<
   Props,
   { month: string; year: string }
 > = async ({ params }) => {
-  const month = getMonth(params?.month) ?? new Date().getMonth() + 1
+  const month = getMonth(params?.month)
+
+  if (month == null || month < 1 || month > 12) {
+    return {
+      notFound: true,
+    }
+  }
 
   return {
     props: {
