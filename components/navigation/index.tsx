@@ -1,4 +1,5 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react"
+import { format, startOfMonth } from "date-fns"
+import { useCallback } from "react"
 import { useRouter } from "next/router"
 import { x } from "@xstyled/styled-components"
 
@@ -7,23 +8,25 @@ import { getMonth } from "@/utils"
 export const Navigation = () => {
   const { push, query } = useRouter()
 
-  const value = Array.isArray(query?.month) ? query?.month[0] : query?.month
-  const [month, setMonth] = useState(
-    getMonth(value) ?? new Date().getMonth() + 1,
+  const value = getMonth(
+    Array.isArray(query?.month) ? query?.month[0] : query?.month,
   )
 
-  useEffect(() => {
-    const value = Number(
-      Array.isArray(query.month) ? query.month[0] : query.month,
-    )
-    if (isNaN(value)) return
+  const currentDate = startOfMonth(
+    value ? new Date(`2021-${value}-1`) : new Date(),
+  )
 
-    setMonth(value)
-  }, [query.month])
+  const changeMonth = useCallback(
+    (modifier: -1 | 1) => () => {
+      let newMonth = (currentDate.getMonth() + 1) + modifier
 
-  const updateParams = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => {
-      void push(`/2021/${Number(e.currentTarget.value)}`)
+      if (newMonth < 1) {
+        newMonth = 12
+      } else if (newMonth > 12) {
+        newMonth = 0
+      }
+
+      void push(`/2021/${newMonth}`)
     },
     [push],
   )
@@ -38,11 +41,11 @@ export const Navigation = () => {
       justifyContent="center"
       backgroundColor="warm-gray-300-a20"
     >
-      <select onChange={updateParams} value={month}>
-        {Array.from({ length: 12 }).map((_, value) => (
-          <option value={value + 1}>{value + 1}</option>
-        ))}
-      </select>
+      <x.button onClick={changeMonth(-1)}>&lt;</x.button>
+
+      <x.div>{format(currentDate, "MMMM")}</x.div>
+
+      <x.button onClick={changeMonth(1)}>&gt;</x.button>
     </x.nav>
   )
 }
