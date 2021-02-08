@@ -5,9 +5,10 @@ import Head from "next/head"
 import { MonthCalendar } from "@/components/calendar/month"
 import { getReleases } from "@/lib/igdb"
 import { ReleasesByDay } from "@/lib/igdb/types"
-import { getMonth } from "@/utils"
+import { getParams } from "@/utils"
 
 type Props = {
+  year: number
   month: number
   releases: ReleasesByDay
 }
@@ -16,9 +17,9 @@ export const getServerSideProps: GetServerSideProps<
   Props,
   { month: string; year: string }
 > = async ({ params }) => {
-  const month = getMonth(params?.month)
+  const { year, month } = getParams(params)
 
-  if (month == null || month < 1 || month > 12) {
+  if (year == null || month == null) {
     return {
       notFound: true,
     }
@@ -26,17 +27,18 @@ export const getServerSideProps: GetServerSideProps<
 
   return {
     props: {
+      year,
       month,
-      releases: (await getReleases({ year: 2021, month })) ?? [],
+      releases: (await getReleases({ year, month })) ?? [],
     },
   }
 }
 
-const MonthPage = ({ month, releases }: Props) => (
+const MonthPage = ({ year, month, releases }: Props) => (
   <>
     <Head>
       <title>
-        {format(new Date(`2021-${month}-1`), "MMM yyyy")} - Game Release
+        {format(new Date(`${year}-${month}-1`), "MMM yyyy")} - Game Release
         Calendar
       </title>
       <link rel="icon" href="/favicon.ico" />
