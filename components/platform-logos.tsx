@@ -60,7 +60,7 @@ export const PlatformLogos = memo<Pick<Release, "platforms">>(
         w="100%"
         p={1}
         marginTop="auto"
-        backgroundColor="warm-gray-900-a60"
+        backgroundColor="warm-gray-900-a40"
       >
         {platformNames.filter(Boolean).map((name) => (
           <x.img
@@ -70,7 +70,10 @@ export const PlatformLogos = memo<Pick<Release, "platforms">>(
             marginRight={1}
             fill="white"
             color="white"
-            style={{ filter: "invert(1)" }}
+            style={{
+              filter:
+                "invert(1) drop-shadow(0 0 2px black) drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
+            }}
             src={`/img/platforms/${name}.svg`}
           />
         ))}
