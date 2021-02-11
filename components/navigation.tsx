@@ -91,6 +91,8 @@ export const Navigation = () => {
         </x.div>
 
         <x.div
+          minWidth={175}
+          textAlign="center"
           style={{
             WebkitTextStroke: "1px #777",
             WebkitTextFillColor: "white",
