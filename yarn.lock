@@ -174,7 +174,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:7.12.5, @babel/runtime@npm:^7.11.2":
+"@babel/runtime@npm:7.12.5":
   version: 7.12.5
   resolution: "@babel/runtime@npm:7.12.5"
   dependencies:
@@ -422,17 +422,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:14.14.25":
   version: 14.14.25
   resolution: "@types/node@npm:14.14.25"
   checksum: 64c42730f4169e49ec378870622ef06c5d820b31340e224cc1b45bf06c8b0cfa28daa587b4ae2b8ea1f712ef049bae4d9c92925b157ba9ba7cde3b22ff552513
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:14.14.22":
-  version: 14.14.22
-  resolution: "@types/node@npm:14.14.22"
-  checksum: e46e32685b4d0261779c13c10ba3ff220cfa714b5c12f8f571fd52cc309546bdbc8ffc86cbad20559ad88e7b17e66fc51c98b067d8c3766597092c05df157b9b
   languageName: node
   linkType: hard
 
@@ -489,47 +482,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@xstyled/core@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "@xstyled/core@npm:2.2.1"
+"@xstyled/core@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "@xstyled/core@npm:2.2.2"
   dependencies:
-    "@babel/runtime": ^7.11.2
-    "@xstyled/system": ^2.2.1
-  checksum: 8915c64f8635bf950885ce0d29af1917351750d2e2c2b40ba9791aad256c9902d029332e24d6f6d9e2d4c9629d70c07db37d591fea3049e93b992241e38d4914
+    "@xstyled/system": ^2.2.2
+  checksum: 9ab83f74beca33fe5346794756a347d425fe57fca9f62abf2cf7ceb210905aae6d25981930ec5db1ef62028f67d81f15a61af4c83698785cc1b4e9cdacf75a5e
   languageName: node
   linkType: hard
 
-"@xstyled/styled-components@npm:2.2.1":
-  version: 2.2.1
-  resolution: "@xstyled/styled-components@npm:2.2.1"
+"@xstyled/styled-components@npm:2.2.2":
+  version: 2.2.2
+  resolution: "@xstyled/styled-components@npm:2.2.2"
   dependencies:
-    "@babel/runtime": ^7.11.2
-    "@xstyled/core": ^2.2.1
-    "@xstyled/system": ^2.2.1
-    "@xstyled/util": ^2.0.0
+    "@xstyled/core": ^2.2.2
+    "@xstyled/system": ^2.2.2
+    "@xstyled/util": ^2.2.2
   peerDependencies:
     styled-components: ^4.0.0 || ^5.0.0
-  checksum: af854a2a6e176a55a84ebbcbfd6895b70bc7be5113d21e94410a624595814b9612a19b3e890b3165791a419817ec07a5b3d0bde580bdb505627e5ef64e1702fd
+  checksum: b858441e25000eb8b46a3fcac437bba8314c688174aa83d3ec8e30227a03d2d4e83993a65ac71fc6280d4ebf527081282a26597b4e229666a9e184bffc07c2bf
   languageName: node
   linkType: hard
 
-"@xstyled/system@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "@xstyled/system@npm:2.2.1"
+"@xstyled/system@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "@xstyled/system@npm:2.2.2"
   dependencies:
-    "@babel/runtime": ^7.11.2
-    "@xstyled/util": ^2.0.0
+    "@xstyled/util": ^2.2.2
     csstype: ^3.0.6
-  checksum: 682938207ea3ee74292f90f01e22ddaf8011279430e36ce18181dc02063ee85676f68141fc0ab33d46c179dd8bf357de5cfe63af6f0b375f152c201ae8deaad6
+  checksum: 55cb41b3644f794c2bdf6d13942a2dbab2f9d757e9fd332170e6f8c26cdc19532c4717fc53793c3fa2393ec1cad320c7b175cf8042487f3ab234af76f0d6ff81
   languageName: node
   linkType: hard
 
-"@xstyled/util@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@xstyled/util@npm:2.0.0"
-  dependencies:
-    "@babel/runtime": ^7.11.2
-  checksum: 5e3e56121f9720ba8f1801f7d671ac58a5eabf53bb5b54e0b8922abab9b167f5e9b3ddbb0dff415bfc3c75ea9ca6a18ff41115681c260ebc0c31303b778840b2
+"@xstyled/util@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "@xstyled/util@npm:2.2.2"
+  checksum: 9af5cc7a14d32f17bd6167a27ae59a487424a193314b3b91975cf01facdb7cf0a17260122c112bd811439161474b0136efd1894a0b87897bc083f9e355cedd67
   languageName: node
   linkType: hard
 
@@ -2118,18 +2106,18 @@ fsevents@~2.3.1:
   resolution: "game-calendar@workspace:."
   dependencies:
     "@types/ms": 0.7.31
-    "@types/node": 14.14.22
+    "@types/node": 14.14.25
     "@types/react": 17.0.1
     "@types/react-dom": 17.0.0
     "@types/styled-components": 5.1.7
-    "@xstyled/styled-components": 2.2.1
+    "@xstyled/styled-components": 2.2.2
     babel-plugin-styled-components: 1.12.0
     date-fns: 2.17.0
     envsafe: 2.0.2
     fork-ts-checker-webpack-plugin: 6.1.0
     got: 11.8.1
     husky: 4.3.8
-    lint-staged: 10.5.3
+    lint-staged: 10.5.4
     ms: 2.1.3
     next: 10.0.6
     node-cache: 5.1.2
@@ -2138,7 +2126,7 @@ fsevents@~2.3.1:
     react-dom: 17.0.1
     styled-components: 5.2.1
     ts-node: 9.1.1
-    typescript: 4.1.3
+    typescript: 4.1.5
   languageName: unknown
   linkType: soft
 
@@ -2767,9 +2755,9 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:10.5.3":
-  version: 10.5.3
-  resolution: "lint-staged@npm:10.5.3"
+"lint-staged@npm:10.5.4":
+  version: 10.5.4
+  resolution: "lint-staged@npm:10.5.4"
   dependencies:
     chalk: ^4.1.0
     cli-truncate: ^2.1.0
@@ -2788,7 +2776,7 @@ fsevents@~2.3.1:
     stringify-object: ^3.3.0
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: cd34098f62feac51a8eb6a6abff6a15be292bfcac55d04c3e9f21c3ea8e472b94fac27507e4d087f0c6e159881216cd22bdf02d2b8d21cd8d0ffdf8ed00875b4
+  checksum: dbcafe3679668379fc03f3aef481c3f710794ec03dd5c3915f26a0de110977fbcb44b55ab6dfcff9e8e5789c568ea5629e92f55944fc43f6f6fa1890ee5b07ba
   languageName: node
   linkType: hard
 
@@ -4760,23 +4748,23 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-typescript@4.1.3:
-  version: 4.1.3
-  resolution: "typescript@npm:4.1.3"
+typescript@4.1.5:
+  version: 4.1.5
+  resolution: "typescript@npm:4.1.5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 4f7ab1506ea22c7a1c313ec5b4285e93ce08d709ad6086d02d3096adb399ca339972ee56d1e578213c51dd0fb7b0fad50283c2d3c39642405644458ae29774f8
+  checksum: 29157c84426ac94ce97aac836264f303a26bd9fb30865650229e3406a36ca2e89735ef4b8878075ba1b95fa4d3ff9810057b64888700c28e20b4034a6db4da83
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.1.3#builtin<compat/typescript>":
-  version: 4.1.3
-  resolution: "typescript@patch:typescript@npm%3A4.1.3#builtin<compat/typescript>::version=4.1.3&hash=cc6730"
+"typescript@patch:typescript@4.1.5#builtin<compat/typescript>":
+  version: 4.1.5
+  resolution: "typescript@patch:typescript@npm%3A4.1.5#builtin<compat/typescript>::version=4.1.5&hash=cc6730"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 017af992148346e671d5b83b041773825888e9c94db8d2b9472cdbb6d6f0ee85927817473121524d319f8be6ffe5a6904d27ff6ef21356d2274fcadd52e17938
+  checksum: 58cc7786be0f8485c124944883b1384287532e4867ec37f1fb5cb2811dbc10f7a9decccad89097f924043285f3515bfd8223c61dbb4f88af00b2d8dc2ef73207
   languageName: node
   linkType: hard
 
