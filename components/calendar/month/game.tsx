@@ -18,6 +18,8 @@ export const Game = ({
   <x.div key={id} h="100%" w="100%" display="flex">
     {cover && (
       <Image
+        priority
+        unoptimized
         src={`https:${cover.url.replace("t_thumb", "t_cover_big")}`}
         layout="fill"
         objectFit="cover"
