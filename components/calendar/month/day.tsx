@@ -43,6 +43,7 @@ type Props = {
 }
 
 export const Day = ({ dim, date, releases }: Props) => {
+  const [initial, setInitial] = useState(true)
   const [active, setActive] = useState(0)
   const upNext = releases?.[active + 1] != null ? active + 1 : 0
 
@@ -53,6 +54,10 @@ export const Day = ({ dim, date, releases }: Props) => {
   }, [releases?.[active + 1]])
 
   useEffect(() => {
+    if (initial) setInitial(false)
+
+    if ((releases?.length ?? 0) < 1) return
+
     const id = setTimeout(() => {
       setActive(upNext)
     }, 5 * 1000)
@@ -63,7 +68,10 @@ export const Day = ({ dim, date, releases }: Props) => {
   }, [active])
 
   return (
-    <Container dim={dim} key={date.getTime()} onClick={() => setActive(upNext)}>
+    <Container
+      dim={dim}
+      onClick={() => setActive(upNext)}
+    >
       <BlurredBackground blur colorMode="light" />
 
       <x.div
@@ -86,9 +94,7 @@ export const Day = ({ dim, date, releases }: Props) => {
       {releases &&
         releases.slice(0, 5).map((release, i) => (
           <Transition key={release.id} disableInitialAnimation duration={1000}>
-            {active === i && (
-              <Game index={i} release={release} />
-            )}
+            {active === i && <Game initial={initial} release={release} />}
           </Transition>
         ))}
     </Container>

@@ -27,18 +27,17 @@ const Container = styled.div`
 `
 
 type Props = {
-  index: number
+  initial: boolean
   release: Pick<Release, "id" | "game" | "platforms">
 }
 
 export const Game = ({
-  index,
+  initial,
   release: {
     game: { cover },
     platforms,
   },
 }: Props) => {
-  const initial = index === 0
 
   return (
     <Container>
