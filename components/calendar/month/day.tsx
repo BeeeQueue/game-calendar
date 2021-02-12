@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react"
+import Transition from "react-tiny-transition"
 import styled, { css, x } from "@xstyled/styled-components"
 
-import { backgroundImage } from "@/styles/utils"
-import { Game } from "./game"
 import { Release } from "@/lib/igdb/types"
-import Transition from "react-tiny-transition"
-import { useState } from "react"
+import { backgroundImage } from "@/styles/utils"
+import { preloadImage } from "@/utils"
+import { Game } from "./game"
 
 const Container = styled.div<{ dim?: boolean }>`
   position: relative;
@@ -43,15 +44,16 @@ type Props = {
 
 export const Day = ({ dim, date, releases }: Props) => {
   const [active, setActive] = useState(0)
+  const upNext = releases?.[active + 1] != null ? active + 1 : 1
+
+  useEffect(() => {
+    if (releases?.[active + 1] == null) return
+
+    void preloadImage(releases?.[active + 1].game.cover?.url)
+  }, [releases?.[active + 1]])
 
   return (
-    <Container
-      dim={dim}
-      key={date.getTime()}
-      onClick={() =>
-        setActive(active + 1 < (releases?.length ?? 0) ? active + 1 : 0)
-      }
-    >
+    <Container dim={dim} key={date.getTime()} onClick={() => setActive(upNext)}>
       <BlurredBackground blur colorMode="light" />
 
       <x.div
@@ -73,7 +75,9 @@ export const Day = ({ dim, date, releases }: Props) => {
       {releases &&
         releases.slice(0, 5).map((release, i) => (
           <Transition key={release.id} duration={500}>
-            {active === i && <Game index={i} active={active} release={release} />}
+            {active === i && (
+              <Game index={i} active={active} release={release} />
+            )}
           </Transition>
         ))}
     </Container>

@@ -1,5 +1,22 @@
 import { ParsedUrlQuery } from "querystring"
 
+const preloadedImages: string[] = []
+
+export const preloadImage = (src?: string) =>
+  new Promise<void>((resolve) => {
+    if (src == null || preloadedImages.includes(src)) {
+      return resolve()
+    }
+
+    const image = new Image()
+    image.src = src
+
+    image.addEventListener("load", () => {
+      preloadedImages.push(src)
+      resolve()
+    })
+  })
+
 const getYear = (input: number | string | undefined): number | null => {
   const num = Number(input)
 
