@@ -3,6 +3,8 @@ import styled, { css, x } from "@xstyled/styled-components"
 import { backgroundImage } from "@/styles/utils"
 import { Game } from "./game"
 import { Release } from "@/lib/igdb/types"
+import Transition from "react-tiny-transition"
+import { useState } from "react"
 
 const Container = styled.div<{ dim?: boolean }>`
   position: relative;
@@ -28,6 +30,7 @@ const BlurredBackground = styled.div.attrs({
   height: 110%;
   width: 110%;
   z-index: 0;
+  pointer-events: none;
 
   ${backgroundImage};
 `
@@ -38,29 +41,41 @@ type Props = {
   releases?: Release[]
 }
 
-export const Day = ({ dim, date, releases }: Props) => (
-  <Container dim={dim} key={date.getTime()}>
-    <BlurredBackground blur colorMode="light" />
+export const Day = ({ dim, date, releases }: Props) => {
+  const [active, setActive] = useState(0)
 
-    <x.div
-      position="absolute"
-      p={3}
-      fontSize="1.75rem"
-      fontWeight="900"
-      color="white"
-      userSelect="none"
-      zIndex={2}
-      style={{
-        WebkitTextStroke: "1px black",
-        WebkitTextFillColor: "white",
-      }}
+  return (
+    <Container
+      dim={dim}
+      key={date.getTime()}
+      onClick={() =>
+        setActive(active + 1 < (releases?.length ?? 0) ? active + 1 : 0)
+      }
     >
-      {date.getDate()}
-    </x.div>
+      <BlurredBackground blur colorMode="light" />
 
-    {releases &&
-      releases
-        .slice(0, 1)
-        .map((release) => <Game key={release.id} release={release} />)}
-  </Container>
-)
+      <x.div
+        position="absolute"
+        p={3}
+        fontSize="1.75rem"
+        fontWeight="900"
+        color="white"
+        userSelect="none"
+        zIndex={2}
+        style={{
+          WebkitTextStroke: "1px black",
+          WebkitTextFillColor: "white",
+        }}
+      >
+        {date.getDate()}
+      </x.div>
+
+      {releases &&
+        releases.slice(0, 5).map((release, i) => (
+          <Transition key={release.id} duration={500}>
+            {active === i && <Game index={i} active={active} release={release} />}
+          </Transition>
+        ))}
+    </Container>
+  )
+}

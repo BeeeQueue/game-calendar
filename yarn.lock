@@ -2124,6 +2124,8 @@ fsevents@~2.3.1:
     prettier: 2.2.1
     react: 17.0.1
     react-dom: 17.0.1
+    react-flip-move: 3.0.4
+    react-tiny-transition: 2.3.0
     styled-components: 5.2.1
     ts-node: 9.1.1
     typescript: 4.1.5
@@ -3842,6 +3844,16 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"react-flip-move@npm:3.0.4":
+  version: 3.0.4
+  resolution: "react-flip-move@npm:3.0.4"
+  peerDependencies:
+    react: ">=16.3.x"
+    react-dom: ">=16.3.x"
+  checksum: ff6bf7b8ecb5e88012ac9625633cc13831b816ef6c64014454ffd1201b0b0c3687ce0d96a03e0b282c9d05cd5a68cd1bf68e9287eae58bcd2dc0a6b96fba3270
+  languageName: node
+  linkType: hard
+
 "react-is@npm:16.13.1, react-is@npm:^16.7.0, react-is@npm:^16.8.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -3853,6 +3865,17 @@ fsevents@~2.3.1:
   version: 0.8.3
   resolution: "react-refresh@npm:0.8.3"
   checksum: 38f06df8e0a20701b96e5d680838a3528d66cfb53db79843d30cb9517df3262ec596607147439975267bf0634bee77101db37298ea79b5742cc28664632f3c76
+  languageName: node
+  linkType: hard
+
+"react-tiny-transition@npm:2.3.0":
+  version: 2.3.0
+  resolution: "react-tiny-transition@npm:2.3.0"
+  peerDependencies:
+    prop-types: ^15.6.0
+    react: ^16.7.0
+    react-dom: ^16.7.0
+  checksum: cf0b2ca8b3ec6011eaad460b5301d5b661ed43d75249c009a45fc84b80fb48ddb6a3a51648fb117fc7d52c5a0130b6ca4967a717860cd74cff7e9786588ed014
   languageName: node
   linkType: hard
 
