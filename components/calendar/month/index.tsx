@@ -14,7 +14,7 @@ const Calendar = styled.div<{ weeks: number }>`
     grid-template-rows: repeat(${p.weeks}, 1fr);
   `};
   grid-gap: 5;
-  
+
   transition: opacity 150ms;
 
   &.before-enter {
@@ -41,9 +41,13 @@ export const MonthCalendar = ({ releases }: Props) => {
 
   return (
     <Calendar weeks={weeks}>
-      {releases.map(({ date, releases }) => (
-        <Day key={date} date={new Date(date)} releases={releases} />
-      ))}
+      {releases.map(({ date, releases }) => {
+        const dateObj = new Date(date)
+
+        return (
+          <Day key={dateObj.toISOString()} date={dateObj} releases={releases} />
+        )
+      })}
     </Calendar>
   )
 }
