@@ -8,11 +8,14 @@ export const preloadImage = (src?: string) =>
       return resolve()
     }
 
-    const image = new Image()
+    let image = new Image()
     image.src = src
 
     image.addEventListener("load", () => {
       preloadedImages.push(src)
+      image.remove()
+      image = null as any
+
       resolve()
     })
   })

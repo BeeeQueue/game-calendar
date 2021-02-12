@@ -44,13 +44,23 @@ type Props = {
 
 export const Day = ({ dim, date, releases }: Props) => {
   const [active, setActive] = useState(0)
-  const upNext = releases?.[active + 1] != null ? active + 1 : 1
+  const upNext = releases?.[active + 1] != null ? active + 1 : 0
 
   useEffect(() => {
     if (releases?.[active + 1] == null) return
 
     void preloadImage(releases?.[active + 1].game.cover?.url)
   }, [releases?.[active + 1]])
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setActive(upNext)
+    }, 5 * 1000)
+
+    return () => {
+      clearTimeout(id)
+    }
+  }, [active])
 
   return (
     <Container dim={dim} key={date.getTime()} onClick={() => setActive(upNext)}>
@@ -63,7 +73,8 @@ export const Day = ({ dim, date, releases }: Props) => {
         fontWeight="900"
         color="white"
         userSelect="none"
-        zIndex={2}
+        // This is high because games have their own z-indexes for when they move around
+        zIndex={100}
         style={{
           WebkitTextStroke: "1px black",
           WebkitTextFillColor: "white",
@@ -74,9 +85,9 @@ export const Day = ({ dim, date, releases }: Props) => {
 
       {releases &&
         releases.slice(0, 5).map((release, i) => (
-          <Transition key={release.id} duration={500}>
+          <Transition key={release.id} disableInitialAnimation duration={1000}>
             {active === i && (
-              <Game index={i} active={active} release={release} />
+              <Game index={i} release={release} />
             )}
           </Transition>
         ))}

@@ -1,58 +1,54 @@
 import Image from "next/image"
-import styled, { css } from "@xstyled/styled-components"
+import styled from "@xstyled/styled-components"
 
 import { Release } from "@/lib/igdb/types"
 import { PlatformLogos } from "@/components/platform-logos"
 
-const Container = styled.div<{ visible: boolean }>`
+const Container = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
   display: flex;
-  
+
   &.before-enter {
-    transform: translateX(-100%);
+    opacity: 0;
   }
-  
+
   &.entering {
-    transform: translateX(0);
+    opacity: 1;
+    transition-timing-function: ease-out;
   }
-  
-  transition: transform 0.5s;
-  
-  ${(p) =>
-    css`
-      opacity: ${p.visible ? 1 : 0};
-    `};
+
+  &.leaving {
+    opacity: 0;
+  }
+
+  transition: opacity 1s ease-in;
 `
 
 type Props = {
   index: number
-  active: number
   release: Pick<Release, "id" | "game" | "platforms">
 }
 
 export const Game = ({
   index,
-  active,
   release: {
-    id,
     game: { cover },
     platforms,
   },
 }: Props) => {
-  const visible = index === active
-  const upNext = active + 1 === index
+  const initial = index === 0
 
   return (
-    <Container key={id} visible={visible}>
-      {(visible || upNext) && cover && (
+    <Container>
+      {cover && (
         <Image
           unoptimized
           src={`https:${cover.url.replace("t_thumb", "t_cover_big")}`}
           layout="fill"
           objectFit="cover"
-          priority={visible}
+          priority={initial}
         />
       )}
 
