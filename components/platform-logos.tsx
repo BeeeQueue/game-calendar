@@ -2,51 +2,45 @@ import { Platform, Release } from "@/lib/igdb/types"
 import { memo } from "react"
 import { x } from "@xstyled/styled-components"
 
-const getPlatformLogo = ({ id, name, platform_logo: logo }: Platform) => {
-  if (id === 3) {
-    return "linux"
-  }
-  if (id === 6) {
-    return "windows"
-  }
-  if (id === 14) {
-    return "apple"
-  }
-
+const getPlatformLogo = ({ id, name }: Platform): string | null => {
   if (name.toLowerCase().includes("xbox")) {
     return "xbox"
   }
 
-  if (id === 167) {
-    return "playstation5"
-  }
-  if (id === 48) {
-    return "playstation4"
-  }
-  if (id === 46) {
-    return "playstationvita"
-  }
+  switch (id) {
+    case 1:
+      return "apple"
+    case 3:
+      return "linux"
+    case 6:
+      return "windows"
 
-  if (id === 130) {
-    return "switch"
-  }
+    case 167:
+      return "playstation5"
+    case 48:
+      return "playstation4"
+    case 46:
+      return "playstationvita"
 
-  if (id === 170) {
-    return "stadia"
-  }
+    case 130:
+      return "switch"
 
-  // if (id === 163) {
-  //   return "steamvr"
-  // }
+    case 170:
+      return "stadia"
 
-  if (id === 34) {
-    return "android"
-  }
-  if (id === 39) {
-    return "ios"
-  }
+    case 34:
+      return "android"
+    case 39:
+      return "ios"
 
-  return logo?.url ?? null
+    // case 163:
+    //   return "steamvr"
+    // case unknown:
+    //   return "playstationvr"
+
+    default:
+      return null
+  }
 }
 
 export const PlatformLogos = memo<Pick<Release, "platforms">>(
@@ -64,6 +58,7 @@ export const PlatformLogos = memo<Pick<Release, "platforms">>(
       >
         {platformNames.filter(Boolean).map((name) => (
           <x.img
+            key={name}
             h={4}
             w={name!.includes("playstation") ? 6 : undefined}
             objectFit="cover"
