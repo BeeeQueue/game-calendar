@@ -1,4 +1,5 @@
 import { AppProps } from "next/app"
+import Crossfade from "react-tiny-crossfade"
 import styled, {
   defaultTheme,
   Preflight,
@@ -10,8 +11,8 @@ import { backgroundImage } from "@/styles/utils"
 
 import "@/styles/globals.css"
 
-const Root = styled.div`
-  height: 100vh;
+const Root = styled(Crossfade)`
+  height: 100vh !important;
   width: 100vw;
   position: relative;
   display: flex;
@@ -20,6 +21,10 @@ const Root = styled.div`
   overflow: hidden;
 
   ${backgroundImage};
+  
+  & > div {
+    height: 100% !important;
+  }
 `
 
 const theme = {
@@ -30,7 +35,12 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider theme={theme}>
     <Preflight />
     <Root colorMode="light">
-      <Component {...pageProps} />
+      <Crossfade disableInitialAnimation duration={150}>
+        <Component
+          key={`${pageProps.year}-${pageProps.month}`}
+          {...pageProps}
+        />
+      </Crossfade>
 
       <Navigation />
     </Root>

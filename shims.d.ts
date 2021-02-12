@@ -1,7 +1,7 @@
 declare module "react-tiny-transition" {
   import { ComponentType, ReactNode } from "react"
 
-  type TransitionProps = {
+  export type TransitionProps = {
     /**
      * The duration of your css transition (milliseconds)
      * @default 500
@@ -25,6 +25,23 @@ declare module "react-tiny-transition" {
   }
 
   const content: ComponentType<TransitionProps>
+
+  export = content
+}
+
+declare module "react-tiny-crossfade" {
+  import { ComponentType } from "react"
+  import { TransitionProps } from "react-tiny-transition"
+
+  type CrossfadeProps = TransitionProps & {
+    /**
+     * Type of element used for the wrapper node
+     * @default "div"
+     */
+    component?: keyof HTMLElementTagNameMap
+  }
+
+  const content: ComponentType<CrossfadeProps>
 
   export = content
 }

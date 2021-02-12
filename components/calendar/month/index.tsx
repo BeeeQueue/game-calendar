@@ -1,7 +1,35 @@
-import { x } from "@xstyled/styled-components"
+import styled, { css } from "@xstyled/styled-components"
 
 import { Day } from "@/components/calendar/month/day"
 import { ReleasesByDay } from "@/lib/igdb/types"
+
+const Calendar = styled.div<{ weeks: number }>`
+  height: 100%;
+  min-height: 0;
+  padding: 6;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(125px, 180px));
+  ${(p) => css`
+    grid-template-rows: repeat(${p.weeks}, 1fr);
+  `};
+  grid-gap: 5;
+  
+  transition: opacity 150ms;
+
+  &.before-enter {
+    opacity: 0;
+  }
+
+  &.entering {
+    opacity: 1;
+    transition-timing-function: ease-out;
+  }
+
+  &.leaving {
+    opacity: 0;
+  }
+`
 
 type Props = {
   releases: ReleasesByDay
@@ -12,21 +40,10 @@ export const MonthCalendar = ({ releases }: Props) => {
   const weeks = Math.ceil(releases.length / 7)
 
   return (
-    <x.main
-      container
-      minHeight={0}
-      h="100%"
-      paddingTop={6}
-      // @ts-ignore
-      paddingBottom={6}
-      display="grid"
-      gridTemplateColumns="repeat(7, minmax(125px, 180px))"
-      gridTemplateRows={`repeat(${weeks}, 1fr)`}
-      gap={5}
-    >
+    <Calendar weeks={weeks}>
       {releases.map(({ date, releases }) => (
         <Day key={date} date={new Date(date)} releases={releases} />
       ))}
-    </x.main>
+    </Calendar>
   )
 }
