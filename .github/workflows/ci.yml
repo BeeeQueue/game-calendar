@@ -29,9 +29,8 @@ jobs:
       - name: Build
         env:
           NODE_ENV: production
-          # These aren't used for anything in the CI
-          IGDB_CLIENT_ID: "not-real"
-          IGDB_SECRET: "not-real"
+          IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
+          IGDB_SECRET: ${{ secrets.IGDB_SECRET }}
         run: yarn build
 #  lint:
 #    runs-on: ubuntu-latest
