@@ -1,15 +1,12 @@
 import { addDays, lastDayOfMonth, startOfDay, subDays } from "date-fns"
 import ms from "ms"
-import Cache from "node-cache"
 
 import { config } from "@/config"
 import { HttpClient } from "@/lib/http"
 import { formatReleaseResponse, getWeekday } from "@/lib/igdb/utils"
 import { ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
+import { Cache as ReleaseCache } from "@/lib/cache"
 
-const ReleaseCache = new Cache({
-  stdTTL: 12 * 60 * 60,
-})
 const getCacheKey = (year: number, month: number) => `${year}-${month}`
 
 let token: string | null = process.env.TOKEN || null
@@ -70,12 +67,15 @@ export const getReleases = async (options: {
 }): Promise<ReleasesByDay | null> => {
   console.log(`Loading releases ${options.year}-${options.month}`)
 
-  if (ReleaseCache.has(getCacheKey(options.year, options.month))) {
+  let releases: ReleasesByDay | null =
+    (await ReleaseCache.get<ReleasesByDay>(
+      getCacheKey(options.year, options.month),
+    )) ?? null
+
+  if (releases != null) {
     console.log(`Found in cache...`)
 
-    return ReleaseCache.get<ReleasesByDay>(
-      getCacheKey(options.year, options.month),
-    )!
+    return releases
   }
 
   const firstDayInMonth = new Date(`${options.year}-${options.month}-1`)
@@ -123,13 +123,13 @@ sort date asc;
     return null
   }
 
-  const releases = formatReleaseResponse(
+  releases = formatReleaseResponse(
     response.body,
     firstDateToFetch,
     lastDateToFetch,
   )
 
-  ReleaseCache.set(getCacheKey(options.year, options.month), releases)
+  await ReleaseCache.set(getCacheKey(options.year, options.month), releases)
 
   return releases
 }
