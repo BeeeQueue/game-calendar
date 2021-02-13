@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps<
   const { year, month } = getParams(params)
 
   return {
-    revalidate: 5,
+    revalidate: 3600,
     props: {
       year,
       month,
