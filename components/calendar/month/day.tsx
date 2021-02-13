@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import Transition from "react-tiny-transition"
+import { isSameDay } from "date-fns"
 import styled, { css, x } from "@xstyled/styled-components"
 
 import { Release } from "@/lib/igdb/types"
@@ -7,13 +8,19 @@ import { backgroundImage } from "@/styles/utils"
 import { preloadImage } from "@/utils"
 import { Game } from "./game"
 
-const Container = styled.div<{ dim?: boolean }>`
+const Container = styled.div<{ dim?: boolean; current: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;
   border-radius: lg;
   box-shadow: lg;
   overflow: hidden;
+
+  ${(p) =>
+    p.current &&
+    css`
+      box-shadow: 0 2px 30px #fff;
+    `};
 
   ${(p) =>
     p.dim &&
@@ -70,6 +77,7 @@ export const Day = ({ dim, date, releases }: Props) => {
   return (
     <Container
       dim={dim}
+      current={isSameDay(date, new Date())}
       onClick={() => setActive(upNext)}
     >
       <BlurredBackground blur colorMode="light" />
