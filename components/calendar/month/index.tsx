@@ -1,3 +1,4 @@
+import { isSameMonth } from "date-fns"
 import styled, { css } from "@xstyled/styled-components"
 
 import { Day } from "@/components/calendar/month/day"
@@ -37,6 +38,7 @@ type Props = {
 }
 
 export const MonthCalendar = ({ releases }: Props) => {
+  const now = new Date()
   const weeks = Math.ceil(releases.length / 7)
 
   return (
@@ -45,7 +47,12 @@ export const MonthCalendar = ({ releases }: Props) => {
         const dateObj = new Date(date)
 
         return (
-          <Day key={dateObj.toISOString()} date={dateObj} releases={releases} />
+          <Day
+            key={dateObj.toISOString()}
+            date={dateObj}
+            releases={releases}
+            dim={!isSameMonth(now, dateObj)}
+          />
         )
       })}
     </Calendar>
