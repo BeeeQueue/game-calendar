@@ -44,7 +44,7 @@ const MonthPage = ({ year, month, releases }: Props) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <MonthCalendar releases={releases} month={month} />
+    <MonthCalendar releases={releases} year={year} month={month} />
   </>
 )
 

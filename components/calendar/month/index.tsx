@@ -34,11 +34,13 @@ const Calendar = styled.div<{ weeks: number }>`
 
 type Props = {
   releases: ReleasesByDay
+  year: number
   month: number
 }
 
-export const MonthCalendar = ({ releases }: Props) => {
-  const now = new Date()
+export const MonthCalendar = ({ year, month, releases }: Props) => {
+  const monthDate = new Date(`${year}-${month}-1`)
+
   const weeks = Math.ceil(releases.length / 7)
 
   return (
@@ -51,7 +53,7 @@ export const MonthCalendar = ({ releases }: Props) => {
             key={dateObj.toISOString()}
             date={dateObj}
             releases={releases}
-            dim={!isSameMonth(now, dateObj)}
+            dim={!isSameMonth(monthDate, dateObj)}
           />
         )
       })}
