@@ -1,18 +1,19 @@
 import CacheManager from "cache-manager"
 import RedisStore from "cache-manager-ioredis"
-import ms from "ms"
 
 import { config } from "@/config"
+import { s } from "@/utils"
 
 const memoryCache = CacheManager.caching({
   store: "memory",
   max: 50,
-  ttl: Math.round(ms("30m") / 1000),
+  ttl: s("12h"),
 })
 
 const redisCache = CacheManager.caching({
   store: RedisStore,
-  ttl: Math.round(ms("1d") / 1000),
+  ttl: s("30d"),
+  refreshThreshold: s("7d"),
   ...config.redis,
   keyPrefix: "gc-v1-",
 })

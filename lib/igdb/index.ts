@@ -7,7 +7,7 @@ import { formatReleaseResponse, getWeekday } from "@/lib/igdb/utils"
 import { ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
 import { Cache as ReleaseCache } from "@/lib/cache"
 
-const getCacheKey = (year: number, month: number) => `${year}-${month}`
+const getCacheKey = ({ year, month }: Options) => `${year}-${month}`
 
 let token: string | null = process.env.TOKEN || null
 
@@ -61,23 +61,14 @@ export const IgdbClient = HttpClient.extend({
   },
 })
 
-export const getReleases = async (options: {
+type Options = {
   year: number
   month: number
-}): Promise<ReleasesByDay | null> => {
-  console.log(`Loading releases ${options.year}-${options.month}`)
+}
 
-  let releases: ReleasesByDay | null =
-    (await ReleaseCache.get<ReleasesByDay>(
-      getCacheKey(options.year, options.month),
-    )) ?? null
-
-  if (releases != null) {
-    console.log(`Found in cache...`)
-
-    return releases
-  }
-
+const fetchReleases = async (
+  options: Options,
+): Promise<ReleasesByDay | null> => {
   const firstDayInMonth = new Date(`${options.year}-${options.month}-1`)
   // getDay gets day of week 0-6 - so we use it as days we need to show before it
   const daysBefore = getWeekday(firstDayInMonth)
@@ -123,13 +114,14 @@ sort date asc;
     return null
   }
 
-  releases = formatReleaseResponse(
-    response.body,
-    firstDateToFetch,
-    lastDateToFetch,
-  )
+  return formatReleaseResponse(response.body, firstDateToFetch, lastDateToFetch)
+}
 
-  await ReleaseCache.set(getCacheKey(options.year, options.month), releases)
+export const getReleases = async (
+  options: Options,
+): Promise<ReleasesByDay | null> => {
+  const key = getCacheKey(options)
+  console.log(`Loading releases ${key}`)
 
-  return releases
+  return ReleaseCache.wrap(key, () => fetchReleases(options))
 }

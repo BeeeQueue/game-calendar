@@ -1,7 +1,10 @@
 import { ParsedUrlQuery } from "querystring"
+import ms from "ms"
+
+type Suffix = "y" | "d" | "h" | "m" | "s" | "ms"
+export const s = (input: `${number}${Suffix}`) => Math.round(ms(input) / 1000)
 
 const preloadedImages: string[] = []
-
 export const preloadImage = (src?: string) =>
   new Promise<void>((resolve) => {
     if (src == null || preloadedImages.includes(src)) {
