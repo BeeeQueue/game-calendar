@@ -31,6 +31,7 @@ jobs:
           NODE_ENV: production
           IGDB_CLIENT_ID: ${{ secrets.IGDB_CLIENT_ID }}
           IGDB_SECRET: ${{ secrets.IGDB_SECRET }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
         run: yarn build
 #  lint:
 #    runs-on: ubuntu-latest
