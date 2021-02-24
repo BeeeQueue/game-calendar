@@ -34,16 +34,16 @@ type Props = {
 export const Game = ({
   initial,
   release: {
-    game: { cover },
+    game: { name, cover },
     platforms,
   },
 }: Props) => {
-
   return (
     <Container>
       {cover && (
         <Image
           unoptimized
+          alt={name}
           src={`https:${cover.url.replace("t_thumb", "t_cover_big")}`}
           layout="fill"
           objectFit="cover"

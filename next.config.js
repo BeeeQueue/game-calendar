@@ -4,7 +4,7 @@ module.exports = (phase, { defaultConfig }) => {
   const config = {
     ...defaultConfig,
 
-    reactStrictMode: true,
+    reactStrictMode: false,
     images: {
       domains: ["images.igdb.com"],
     },

@@ -105,7 +105,6 @@ where
   & date <= ${Math.round(lastDateToFetch.getTime() / 1000)}
 ;
 sort date asc;
-
 `.trim(),
   })
 

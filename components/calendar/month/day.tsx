@@ -47,9 +47,10 @@ type Props = {
   date: Date
   dim?: boolean
   releases?: Release[]
+  onClick?: () => void
 }
 
-export const Day = ({ dim, date, releases }: Props) => {
+export const Day = ({ dim, date, releases, onClick }: Props) => {
   const [initial, setInitial] = useState(true)
   const [active, setActive] = useState(0)
   const upNext = releases?.[active + 1] != null ? active + 1 : 0
@@ -78,7 +79,7 @@ export const Day = ({ dim, date, releases }: Props) => {
     <Container
       dim={dim}
       current={isSameDay(date, new Date())}
-      onClick={() => setActive(upNext)}
+      onClick={onClick}
     >
       <BlurredBackground blur colorMode="light" />
 

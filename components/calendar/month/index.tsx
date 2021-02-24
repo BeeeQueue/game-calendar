@@ -1,7 +1,10 @@
+import { useState } from "react"
+import Transition from "react-tiny-transition"
 import { isSameMonth } from "date-fns"
 import styled, { css } from "@xstyled/styled-components"
 
 import { Day } from "@/components/calendar/month/day"
+import { Details, Selection } from "@/components/calendar/details"
 import { ReleasesByDay } from "@/lib/igdb/types"
 
 const Calendar = styled.div<{ weeks: number }>`
@@ -39,8 +42,9 @@ type Props = {
 }
 
 export const MonthCalendar = ({ year, month, releases }: Props) => {
-  const monthDate = new Date(`${year}-${month}-1`)
+  const [selected, setSelected] = useState<Selection | null>(null)
 
+  const monthDate = new Date(`${year}-${month}-1`)
   const weeks = Math.ceil(releases.length / 7)
 
   return (
@@ -54,9 +58,20 @@ export const MonthCalendar = ({ year, month, releases }: Props) => {
             date={dateObj}
             releases={releases}
             dim={!isSameMonth(monthDate, dateObj)}
+            onClick={
+              releases.length > 0
+                ? () => setSelected({ date, releases })
+                : undefined
+            }
           />
         )
       })}
+
+      <Transition duration={200}>
+        {selected && (
+          <Details selection={selected} setSelection={setSelected} />
+        )}
+      </Transition>
     </Calendar>
   )
 }
