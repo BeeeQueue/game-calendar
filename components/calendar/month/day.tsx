@@ -8,7 +8,11 @@ import { backgroundImage } from "@/styles/utils"
 import { preloadImage } from "@/utils"
 import { Game } from "./game"
 
-const Container = styled.div<{ dim?: boolean; current: boolean }>`
+const Container = styled.div<{
+  dim?: boolean
+  current: boolean
+  clickable: boolean
+}>`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -20,6 +24,12 @@ const Container = styled.div<{ dim?: boolean; current: boolean }>`
     p.current &&
     css`
       box-shadow: 0 2px 30px #fff;
+    `};
+
+  ${(p) =>
+    p.clickable &&
+    css`
+      cursor: pointer;
     `};
 
   ${(p) =>
@@ -61,24 +71,25 @@ export const Day = ({ dim, date, releases, onClick }: Props) => {
     void preloadImage(releases?.[active + 1].game.cover?.url)
   }, [releases?.[active + 1]])
 
-  useEffect(() => {
-    if (initial) setInitial(false)
-
-    if ((releases?.length ?? 0) < 1) return
-
-    const id = setTimeout(() => {
-      setActive(upNext)
-    }, 5 * 1000)
-
-    return () => {
-      clearTimeout(id)
-    }
-  }, [active])
+  // useEffect(() => {
+  //   if (initial) setInitial(false)
+  //
+  //   if ((releases?.length ?? 0) < 1) return
+  //
+  //   const id = setTimeout(() => {
+  //     setActive(upNext)
+  //   }, 5 * 1000)
+  //
+  //   return () => {
+  //     clearTimeout(id)
+  //   }
+  // }, [active])
 
   return (
     <Container
       dim={dim}
       current={isSameDay(date, new Date())}
+      clickable={(releases?.length ?? 0) > 0}
       onClick={onClick}
     >
       <BlurredBackground blur colorMode="light" />

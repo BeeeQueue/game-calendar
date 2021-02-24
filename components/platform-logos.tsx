@@ -43,36 +43,30 @@ const getPlatformLogo = ({ id, name }: Platform): string | null => {
   }
 }
 
-export const PlatformLogos = memo<Pick<Release, "platforms">>(
-  ({ platforms }) => {
-    const platformNames = Array.from(new Set(platforms.map(getPlatformLogo)))
+export const PlatformLogos = memo<
+  Pick<Release, "platforms"> & { size?: number }
+>(({ platforms, size = 15 }) => {
+  const platformNames = Array.from(new Set(platforms.map(getPlatformLogo)))
 
-    return (
-      <x.div
-        display="flex"
-        position="relative"
-        w="100%"
-        p={1}
-        marginTop="auto"
-        backgroundColor="warm-gray-900-a40"
-      >
-        {platformNames.filter(Boolean).map((name) => (
-          <x.img
-            key={name}
-            h={4}
-            w={name!.includes("playstation") ? 6 : undefined}
-            objectFit="cover"
-            marginRight={1}
-            fill="white"
-            color="white"
-            style={{
-              filter:
-                "invert(1) drop-shadow(0 0 2px black) drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
-            }}
-            src={`/img/platforms/${name}.svg`}
-          />
-        ))}
-      </x.div>
-    )
-  },
-)
+  return (
+    <x.div display="flex">
+      {platformNames.filter(Boolean).map((name) => (
+        <x.img
+          key={name}
+          h={`${size}px`}
+          w={name!.includes("playstation") ? `${size * 1.65}px` : undefined}
+          objectFit="cover"
+          marginRight={1}
+          fill="white"
+          color="white"
+          overflow="show"
+          style={{
+            filter:
+              "invert(1) drop-shadow(0 0 2px black) drop-shadow(0 2px 4px rgba(0,0,0,0.5))",
+          }}
+          src={`/img/platforms/${name}.svg`}
+        />
+      ))}
+    </x.div>
+  )
+})

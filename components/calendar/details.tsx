@@ -6,6 +6,7 @@ import styled, { x } from "@xstyled/styled-components"
 
 import { ReleasesByDay } from "@/lib/igdb/types"
 import { format } from "date-fns"
+import { PlatformLogos } from "@/components/platform-logos"
 
 export type Selection = ReleasesByDay[number]
 
@@ -43,6 +44,8 @@ const Body = styled.div`
   border-radius: lg;
   overflow-y: auto;
 
+  filter: drop-shadow(2px 6px 5px rgba(0, 0, 0, 0.35));
+
   & .game:first-of-type {
     border-top-right-radius: 0.5rem;
   }
@@ -50,7 +53,6 @@ const Body = styled.div`
 
 const Game = styled.div`
   position: relative;
-  padding: 3;
   width: 100%;
   display: flex;
   align-items: center;
@@ -60,6 +62,18 @@ const Game = styled.div`
   &:first-child {
     border-top-right-radius: 0.5rem;
   }
+`
+
+const PlatformsContainer = styled.div`
+  position: relative;
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  padding: 0 3;
+
+  background: linear-gradient(-90deg, rgba(0, 0, 0, 0.75), transparent);
 `
 
 type Props = {
@@ -109,7 +123,7 @@ export const Details = ({ selection, setSelection }: Props) => {
 
         <x.div display="flex" flexDirection="column" w="100%">
           {selection?.releases.map((release) => (
-            <Link href={release.game.url}>
+            <Link key={release.game.id} href={release.game.url}>
               <Game>
                 <Image
                   unoptimized
@@ -120,7 +134,8 @@ export const Details = ({ selection, setSelection }: Props) => {
                   objectFit="cover"
                 />
 
-                <x.span
+                <x.div
+                  p={3}
                   fontSize={24}
                   fontWeight={800}
                   zIndex={10}
@@ -130,7 +145,11 @@ export const Details = ({ selection, setSelection }: Props) => {
                   }}
                 >
                   {release.game.name}
-                </x.span>
+                </x.div>
+
+                <PlatformsContainer>
+                  <PlatformLogos platforms={release.platforms} size={20} />
+                </PlatformsContainer>
               </Game>
             </Link>
           ))}
