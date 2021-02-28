@@ -1,10 +1,10 @@
-import { AppProps } from "next/app"
-import Crossfade from "react-tiny-crossfade"
 import styled, {
   defaultTheme,
   Preflight,
   ThemeProvider,
 } from "@xstyled/styled-components"
+import { AppProps } from "next/app"
+import Crossfade from "react-tiny-crossfade"
 
 import { Navigation } from "@/components/navigation"
 import { backgroundImage } from "@/styles/utils"
@@ -21,7 +21,7 @@ const Root = styled(Crossfade)`
   overflow: hidden;
 
   ${backgroundImage};
-  
+
   & > div {
     height: 100% !important;
   }

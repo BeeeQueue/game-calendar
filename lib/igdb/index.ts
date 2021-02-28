@@ -2,10 +2,10 @@ import { addDays, lastDayOfMonth, startOfDay, subDays } from "date-fns"
 import ms from "ms"
 
 import { config } from "@/config"
-import { HttpClient } from "@/lib/http"
-import { formatReleaseResponse, getWeekday } from "@/lib/igdb/utils"
-import { ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
 import { Cache as ReleaseCache } from "@/lib/cache"
+import { HttpClient } from "@/lib/http"
+import { ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
+import { formatReleaseResponse, getWeekday } from "@/lib/igdb/utils"
 
 const getCacheKey = ({ year, month }: Options) => `${year}-${month}`
 

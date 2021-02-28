@@ -1,5 +1,5 @@
-import { Redis, Cluster } from "ioredis"
 import { DefaultTheme as XStyledDefaultTheme } from "@xstyled/styled-components"
+import { Redis, Cluster } from "ioredis"
 
 declare module "styled-components" {
   export interface DefaultTheme extends XStyledDefaultTheme {

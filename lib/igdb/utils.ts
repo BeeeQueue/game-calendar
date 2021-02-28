@@ -1,4 +1,5 @@
 import { addDays, differenceInDays, isSameDay } from "date-fns"
+
 import { Release, ReleaseResponse, ReleasesByDay } from "@/lib/igdb/types"
 
 export const getWeekday = (date: Date) => {

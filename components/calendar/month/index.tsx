@@ -1,10 +1,10 @@
+import styled, { css } from "@xstyled/styled-components"
+import { isSameMonth } from "date-fns"
 import { useState } from "react"
 import Transition from "react-tiny-transition"
-import { isSameMonth } from "date-fns"
-import styled, { css } from "@xstyled/styled-components"
 
-import { Day } from "@/components/calendar/month/day"
 import { Details, Selection } from "@/components/calendar/details"
+import { Day } from "@/components/calendar/month/day"
 import { ReleasesByDay } from "@/lib/igdb/types"
 
 const Calendar = styled.div<{ weeks: number }>`

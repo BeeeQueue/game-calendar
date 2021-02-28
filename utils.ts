@@ -1,4 +1,5 @@
 import { ParsedUrlQuery } from "querystring"
+
 import ms from "ms"
 
 type Suffix = "y" | "d" | "h" | "m" | "s" | "ms"

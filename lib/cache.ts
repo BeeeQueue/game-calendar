@@ -1,16 +1,16 @@
-import CacheManager from "cache-manager"
+import { caching, multiCaching } from "cache-manager"
 import RedisStore from "cache-manager-ioredis"
 
 import { config } from "@/config"
 import { s } from "@/utils"
 
-const memoryCache = CacheManager.caching({
+const memoryCache = caching({
   store: "memory",
   max: 50,
   ttl: s("12h"),
 })
 
-const redisCache = CacheManager.caching({
+const redisCache = caching({
   store: RedisStore,
   ttl: s("30d"),
   refreshThreshold: s("7d"),
@@ -24,4 +24,4 @@ client.on("error", (err) => {
   throw new Error(`Could not connect to Redis (${err.toString()})`)
 })
 
-export const Cache = CacheManager.multiCaching([memoryCache, redisCache])
+export const Cache = multiCaching([memoryCache, redisCache])

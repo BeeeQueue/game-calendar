@@ -1,6 +1,7 @@
-import { Platform, Release } from "@/lib/igdb/types"
-import { memo } from "react"
 import { x } from "@xstyled/styled-components"
+import { memo } from "react"
+
+import { Platform, Release } from "@/lib/igdb/types"
 
 const getPlatformLogo = ({ id, name }: Platform): string | null => {
   if (name.toLowerCase().includes("xbox")) {
