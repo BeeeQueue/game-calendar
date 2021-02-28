@@ -96,6 +96,7 @@ fields
     ,game.aggregated_rating
     ,game.hypes
       ,game.cover.url
+      ,game.screenshots.url
 ;
 limit 500;
 where

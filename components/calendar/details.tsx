@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { useClickAway } from "react-use"
 import styled, { x } from "@xstyled/styled-components"
 
-import { ReleasesByDay } from "@/lib/igdb/types"
+import { Release, ReleasesByDay } from "@/lib/igdb/types"
 import { format } from "date-fns"
 import { PlatformLogos } from "@/components/platform-logos"
 
@@ -37,7 +37,7 @@ const Body = styled.div`
   align-items: flex-start;
 
   max-height: 80%;
-  width: 500px;
+  width: 650px;
 
   z-index: 101;
 
@@ -75,6 +75,11 @@ const PlatformsContainer = styled.div`
 
   background: linear-gradient(-90deg, rgba(0, 0, 0, 0.75), transparent);
 `
+
+const getGameImage = (release: Release): string | null =>
+  release.game.screenshots?.[0]?.url?.replace("t_thumb", "t_screenshot_med") ??
+  release.game.cover?.url?.replace("t_thumb", "t_cover_big") ??
+  null
 
 type Props = {
   selection: Selection | null
@@ -127,19 +132,19 @@ export const Details = ({ selection, setSelection }: Props) => {
               <Game>
                 <Image
                   unoptimized
-                  src={
-                    release.game.cover?.url?.replace("t_thumb", "t_cover_big")!
-                  }
+                  src={getGameImage(release)!}
                   layout="fill"
                   objectFit="cover"
                 />
 
                 <x.div
                   p={3}
-                  fontSize={24}
+                  fontSize={28}
                   fontWeight={800}
                   zIndex={10}
+                  background="linear-gradient(90deg, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.5), transparent)"
                   style={{
+                    textShadow: "0 2px 5px rgba(0,0,0,0.5)",
                     WebkitTextStroke: "1px black",
                     WebkitTextFillColor: "white",
                   }}

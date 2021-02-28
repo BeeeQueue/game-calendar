@@ -24,6 +24,10 @@ export type ReleaseResponse = {
       id: string
       url: string
     }
+    screenshots?: Array<{
+      id: string
+      url: string
+    }>
   }
 }
 
