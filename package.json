@@ -19,6 +19,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "lint": "eslint \"**/*.{ts,tsx}\"",
     "start": "next start"
   },
   "dependencies": {
