@@ -33,26 +33,26 @@ jobs:
           IGDB_SECRET: ${{ secrets.IGDB_SECRET }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
         run: yarn build
-#  lint:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Check out Git repository
-#        uses: actions/checkout@v1
-#
-#      - name: Setup Node
-#        uses: actions/setup-node@v1
-#        with:
-#          node-version: 14
-#
-#      - name: Install dependencies
-#        uses: bahmutov/npm-install@v1
-#        with:
-#          install-command: yarn install --immutable
-#
-#      - name: Lint
-#        run: yarn lint
 
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          install-command: yarn install --immutable
+
+      - name: Lint
+        run: yarn lint
 #  test:
 #    runs-on: ubuntu-latest
 #
