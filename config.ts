@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { envsafe, str, url } from "envsafe"
-import { RedisOptions } from "ioredis"
+import type { RedisOptions } from "ioredis"
 
 enum Environment {
   Development = "development",

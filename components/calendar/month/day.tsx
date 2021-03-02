@@ -1,7 +1,8 @@
-import styled, { css, x } from "@xstyled/styled-components"
 import { isSameDay } from "date-fns"
 import { useEffect, useState } from "react"
 import Transition from "react-tiny-transition"
+
+import styled, { css, x } from "@xstyled/styled-components"
 
 import { Release } from "@/lib/igdb/types"
 import { backgroundImage } from "@/styles/utils"

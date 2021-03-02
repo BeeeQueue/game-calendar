@@ -12,6 +12,7 @@ const getCacheKey = ({ year, month }: Options) => `${year}-${month}`
 let token: string | null = process.env.TOKEN || null
 
 const refreshToken = async () => {
+  /* eslint-disable @typescript-eslint/naming-convention */
   const response = await HttpClient.post<{
     access_token: string
     expires_in: number
@@ -23,6 +24,7 @@ const refreshToken = async () => {
       grant_type: "client_credentials",
     },
   })
+  /* eslint-enable @typescript-eslint/naming-convention */
 
   token = response.body.access_token
   const refreshIn = ms("30d")
@@ -55,7 +57,7 @@ export const IgdbClient = HttpClient.extend({
   hooks: {
     beforeRequest: [
       async (options) => {
-        options.headers.Authorization = `Bearer ${await getToken()}`
+        options.headers.Authorization = `Bearer ${(await getToken())!}`
       },
     ],
   },

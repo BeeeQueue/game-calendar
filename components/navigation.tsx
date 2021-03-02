@@ -1,7 +1,8 @@
-import { x } from "@xstyled/styled-components"
 import { format } from "date-fns"
 import { useRouter } from "next/router"
 import { ReactNode, useCallback } from "react"
+
+import { x } from "@xstyled/styled-components"
 
 import { getParams } from "@/utils"
 

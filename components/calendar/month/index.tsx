@@ -1,7 +1,8 @@
-import styled, { css } from "@xstyled/styled-components"
 import { isSameMonth } from "date-fns"
 import { useState } from "react"
 import Transition from "react-tiny-transition"
+
+import styled, { css } from "@xstyled/styled-components"
 
 import { Details, Selection } from "@/components/calendar/details"
 import { Day } from "@/components/calendar/month/day"
@@ -41,15 +42,19 @@ type Props = {
   month: number
 }
 
-export const MonthCalendar = ({ year, month, releases }: Props) => {
+export const MonthCalendar = ({
+  year,
+  month,
+  releases: monthsReleases,
+}: Props) => {
   const [selected, setSelected] = useState<Selection | null>(null)
 
   const monthDate = new Date(`${year}-${month}-1`)
-  const weeks = Math.ceil(releases.length / 7)
+  const weeks = Math.ceil(monthsReleases.length / 7)
 
   return (
     <Calendar weeks={weeks}>
-      {releases.map(({ date, releases }) => {
+      {monthsReleases.map(({ date, releases }) => {
         const dateObj = new Date(date)
 
         return (

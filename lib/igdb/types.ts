@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { ReleaseDateCategory } from "@/constants"
 
 export type Platform = {

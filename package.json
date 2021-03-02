@@ -2,6 +2,10 @@
   "name": "game-calendar",
   "version": "0.1.0",
   "private": true,
+  "license": "AGPL-3.0-only",
+  "engines": {
+    "node": ">=14"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
@@ -12,7 +16,6 @@
       "prettier --write"
     ]
   },
-  "license": "AGPL-3.0-only",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

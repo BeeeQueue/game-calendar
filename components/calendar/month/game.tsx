@@ -1,5 +1,6 @@
-import styled from "@xstyled/styled-components"
 import Image from "next/image"
+
+import styled from "@xstyled/styled-components"
 
 import { PlatformLogos } from "@/components/platform-logos"
 import { Release } from "@/lib/igdb/types"

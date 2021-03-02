@@ -36,6 +36,7 @@ const HomePage = ({ year, month, releases }: Props) => (
         {format(new Date(`${year}-${month}-1`), "MMM yyyy")} - Game Release
         Calendar
       </title>
+
       <link rel="icon" href="/favicon.ico" />
     </Head>
 

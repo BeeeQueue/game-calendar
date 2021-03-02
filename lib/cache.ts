@@ -20,7 +20,7 @@ const redisCache = caching({
 
 const client = redisCache.store.getClient()
 
-client.on("error", (err) => {
+client.on("error", (err: Error) => {
   throw new Error(`Could not connect to Redis (${err.toString()})`)
 })
 

@@ -1,10 +1,11 @@
+import { AppProps } from "next/app"
+import Crossfade from "react-tiny-crossfade"
+
 import styled, {
   defaultTheme,
   Preflight,
   ThemeProvider,
 } from "@xstyled/styled-components"
-import { AppProps } from "next/app"
-import Crossfade from "react-tiny-crossfade"
 
 import { Navigation } from "@/components/navigation"
 import { backgroundImage } from "@/styles/utils"
@@ -31,12 +32,18 @@ const theme = {
   ...defaultTheme,
 }
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
+const MyApp = ({
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  Component,
+  pageProps,
+}: AppProps) => (
   <ThemeProvider theme={theme}>
     <Preflight />
+
     <Root colorMode="light">
       <Crossfade disableInitialAnimation duration={150}>
         <Component
+          /* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
           key={`${pageProps.year}-${pageProps.month}`}
           {...pageProps}
         />

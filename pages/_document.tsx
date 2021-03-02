@@ -9,6 +9,7 @@ export default class MyDocument extends Document {
     try {
       ctx.renderPage = () =>
         originalRenderPage({
+          // eslint-disable-next-line @typescript-eslint/naming-convention
           enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
         })
@@ -19,6 +20,7 @@ export default class MyDocument extends Document {
         styles: (
           <>
             {initialProps.styles}
+
             {sheet.getStyleElement()}
           </>
         ),

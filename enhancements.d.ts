@@ -1,14 +1,7 @@
-import { DefaultTheme as XStyledDefaultTheme } from "@xstyled/styled-components"
-import { Redis, Cluster } from "ioredis"
-
-declare module "styled-components" {
-  export interface DefaultTheme extends XStyledDefaultTheme {
-    /* Customize your theme */
-  }
-}
+import type { Cluster, Redis } from "ioredis"
 
 declare module "cache-manager" {
-  import { Redis, Cluster } from "ioredis"
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
   interface Store<T = unknown> {
     getClient(): Redis | Cluster
 

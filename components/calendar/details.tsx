@@ -1,9 +1,10 @@
-import styled, { x } from "@xstyled/styled-components"
 import { format } from "date-fns"
 import Image from "next/image"
 import Link from "next/link"
 import { useRef } from "react"
 import { useClickAway } from "react-use"
+
+import styled, { x } from "@xstyled/styled-components"
 
 import { PlatformLogos } from "@/components/platform-logos"
 import { Release, ReleasesByDay } from "@/lib/igdb/types"

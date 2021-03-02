@@ -5,6 +5,8 @@ import ms from "ms"
 type Suffix = "y" | "d" | "h" | "m" | "s" | "ms"
 export const s = (input: `${number}${Suffix}`) => Math.round(ms(input) / 1000)
 
+export const isNotNil = <T>(obj: T | null | undefined): obj is T => obj != null
+
 const preloadedImages: string[] = []
 export const preloadImage = (src?: string) =>
   new Promise<void>((resolve) => {

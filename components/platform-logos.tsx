@@ -1,7 +1,9 @@
-import { x } from "@xstyled/styled-components"
 import { memo } from "react"
 
+import { x } from "@xstyled/styled-components"
+
 import { Platform, Release } from "@/lib/igdb/types"
+import { isNotNil } from "@/utils"
 
 const getPlatformLogo = ({ id, name }: Platform): string | null => {
   if (name.toLowerCase().includes("xbox")) {
@@ -44,18 +46,19 @@ const getPlatformLogo = ({ id, name }: Platform): string | null => {
   }
 }
 
-export const PlatformLogos = memo<
-  Pick<Release, "platforms"> & { size?: number }
->(({ platforms, size = 15 }) => {
+type Props = Pick<Release, "platforms"> & { size?: number }
+
+// eslint-disable-next-line react/display-name
+export const PlatformLogos = memo(({ platforms, size = 15 }: Props) => {
   const platformNames = Array.from(new Set(platforms.map(getPlatformLogo)))
 
   return (
     <x.div display="flex">
-      {platformNames.filter(Boolean).map((name) => (
+      {platformNames.filter(isNotNil).map((name) => (
         <x.img
           key={name}
           h={`${size}px`}
-          w={name!.includes("playstation") ? `${size * 1.65}px` : undefined}
+          w={name.includes("playstation") ? `${size * 1.65}px` : undefined}
           objectFit="cover"
           marginRight={`${size * 0.25}px`}
           fill="white"
