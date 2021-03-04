@@ -16,9 +16,9 @@ module.exports = {
   ],
   overrides: [
     {
-      files: "!pages/**/*",
+      files: ["!pages/**/*.tsx", "**/*.stories.tsx"],
       rules: {
-        "import/no-default-export": "error",
+        "import/no-default-export": "off",
       },
     },
   ],

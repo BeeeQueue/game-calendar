@@ -22,11 +22,11 @@ export type ReleaseResponse = {
     aggregated_rating?: number
     hypes?: number
     cover?: {
-      id: string
+      id: number
       url: string
     }
     screenshots?: Array<{
-      id: string
+      id: number
       url: string
     }>
   }

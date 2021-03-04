@@ -28,7 +28,7 @@ const Root = styled(Crossfade)`
   }
 `
 
-const theme = {
+export const theme = {
   ...defaultTheme,
 }
 
