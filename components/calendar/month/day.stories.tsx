@@ -39,3 +39,9 @@ oneGame.args = {
   date: new Date("2021-01-30"),
   releases: releasesFixture.slice(0, 1),
 }
+
+export const multipleGames = story.bind({})
+multipleGames.args = {
+  date: new Date("2021-01-30"),
+  releases: releasesFixture.slice(0, 3),
+}

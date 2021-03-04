@@ -51,55 +51,44 @@ export const releasesFixture: Release[] = [
           url: "//images.igdb.com/igdb/image/upload/t_thumb/plfl.jpg",
         },
       },
-    ],
-  },
-  {
-    id: 222274,
-    category: 0,
-    date: 1612224000,
-    game: {
-      id: 136604,
-      aggregated_rating: 92.4,
-      cover: {
-        id: 112619,
-        url: "//images.igdb.com/igdb/image/upload/t_thumb/co2ewb.jpg",
-      },
-      name: "Control: Ultimate Edition",
-      screenshots: [
-        {
-          id: 408164,
-          url: "//images.igdb.com/igdb/image/upload/t_thumb/sc8qxw.jpg",
-        },
-        {
-          id: 408165,
-          url: "//images.igdb.com/igdb/image/upload/t_thumb/sc8qxx.jpg",
-        },
-        {
-          id: 408166,
-          url: "//images.igdb.com/igdb/image/upload/t_thumb/sc8qxy.jpg",
-        },
-        {
-          id: 408167,
-          url: "//images.igdb.com/igdb/image/upload/t_thumb/sc8qxz.jpg",
-        },
-        {
-          id: 408168,
-          url: "//images.igdb.com/igdb/image/upload/t_thumb/sc8qy0.jpg",
-        },
-        {
-          id: 408169,
-          url: "//images.igdb.com/igdb/image/upload/t_thumb/sc8qy1.jpg",
-        },
-      ],
-      url: "https://www.igdb.com/games/control-ultimate-edition",
-    },
-    platforms: [
       {
         id: 167,
         name: "PlayStation 5",
         platform_logo: {
           id: 463,
           url: "//images.igdb.com/igdb/image/upload/t_thumb/plcv.jpg",
+        },
+      },
+    ],
+  },
+  {
+    id: 227373,
+    category: 0,
+    date: 1612224000,
+    game: {
+      id: 104967,
+      aggregated_rating: 90.0,
+      cover: {
+        id: 90408,
+        url: "//images.igdb.com/igdb/image/upload/t_thumb/co1xrc.jpg",
+      },
+      name: "Valheim",
+      screenshots: [
+        {
+          id: 257175,
+          url: "//images.igdb.com/igdb/image/upload/t_thumb/sc5ifr.jpg",
+        },
+      ],
+      url: "https://www.igdb.com/games/valheim",
+    },
+    platforms: [
+      {
+        id: 6,
+        name: "PC (Microsoft Windows)",
+        platform_logo: {
+          id: 203,
+          url:
+            "//images.igdb.com/igdb/image/upload/t_thumb/irwvwpl023f8y19tidgq.jpg",
         },
       },
     ],
