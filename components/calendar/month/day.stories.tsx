@@ -3,8 +3,9 @@ import { ComponentPropsWithoutRef } from "react"
 import type { Meta, Story } from "@storybook/react"
 import styled from "@xstyled/styled-components"
 
-import { Day } from "@/components/calendar/month/day"
 import { releasesFixture } from "@/fixtures/releases"
+
+import { Day } from "./day"
 
 type Args = ComponentPropsWithoutRef<typeof Day>
 
