@@ -7,7 +7,7 @@ type Props = {
 
 export const backgroundImage = css<Props>`
   background-image: url("/img/${(p) =>
-    p.colorMode === "light" ? "day" : "night"}.webp");
+    p.colorMode === "dark" ? "night" : "day"}.webp");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
