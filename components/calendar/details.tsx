@@ -52,7 +52,7 @@ const Body = styled.div`
   }
 `
 
-const Game = styled.div`
+const Game = styled.a`
   position: relative;
   width: 100%;
   display: flex;
@@ -129,7 +129,7 @@ export const Details = ({ selection, setSelection }: Props) => {
 
         <x.div display="flex" flexDirection="column" w="100%">
           {selection?.releases.map((release) => (
-            <Link key={release.game.id} href={release.game.url}>
+            <Link key={release.game.id} passHref href={release.game.url}>
               <Game>
                 <Image
                   unoptimized
