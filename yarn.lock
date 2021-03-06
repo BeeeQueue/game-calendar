@@ -1502,9 +1502,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@beequeue/eslint-plugin@npm:0.1.0":
-  version: 0.1.0
-  resolution: "@beequeue/eslint-plugin@npm:0.1.0"
+"@beequeue/eslint-plugin@npm:0.1.1":
+  version: 0.1.1
+  resolution: "@beequeue/eslint-plugin@npm:0.1.1"
   dependencies:
     "@typescript-eslint/eslint-plugin": 4.15.2
     "@typescript-eslint/parser": 4.15.2
@@ -1519,7 +1519,7 @@ __metadata:
     eslint-plugin-vue: 7.7.0
   peerDependencies:
     eslint: ^7.21.0
-  checksum: a174c1ac94a57775e5b226253761dcf71568b3d60427e2de8ae7a3f8a09f01578a66166850c47269a2fcc69717e49d342480818dac5c99d54b49ff17594f4424
+  checksum: 2d692887315f5832e2fd7f16e26541a7080797bd87d9fa806806984be01a8077f8f5c70f92272f468ac16714863fbb424794f5a01e769cab5a0c241e6188b774
   languageName: node
   linkType: hard
 
@@ -8591,7 +8591,7 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "game-calendar@workspace:."
   dependencies:
-    "@beequeue/eslint-plugin": 0.1.0
+    "@beequeue/eslint-plugin": 0.1.1
     "@storybook/addon-essentials": 6.2.0-beta.10
     "@storybook/builder-webpack5": 6.2.0-beta.10
     "@storybook/react": 6.2.0-beta.10
