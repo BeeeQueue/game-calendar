@@ -14,6 +14,9 @@ module.exports = {
     "plugin:@beequeue/node",
     "plugin:@beequeue/typescript",
   ],
+  rules: {
+    "node/no-unpublished-import": "off",
+  },
   overrides: [
     {
       files: ["!pages/**/*.tsx", "**/*.stories.tsx"],
