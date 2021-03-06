@@ -1,15 +1,22 @@
 import Image from "next/image"
 
-import styled from "@xstyled/styled-components"
+import styled, { css } from "@xstyled/styled-components"
 
 import { PlatformLogos } from "@/components/platform-logos"
 import { Release } from "@/lib/igdb/types"
 
-const Container = styled.div`
+const Container = styled.div<{ visible: boolean }>`
   position: absolute;
   height: 100%;
   width: 100%;
   display: flex;
+
+  ${(p) =>
+    p.visible === false &&
+    css`
+      position: absolute;
+      opacity: 0;
+    `};
 
   &.before-enter {
     opacity: 0;
@@ -38,11 +45,13 @@ const PlatformsContainer = styled.div`
 `
 
 type Props = {
+  visible?: boolean
   initial: boolean
   release: Pick<Release, "id" | "game" | "platforms">
 }
 
 export const Game = ({
+  visible = true,
   initial,
   release: {
     game: { name, cover },
@@ -50,7 +59,7 @@ export const Game = ({
   },
 }: Props) => {
   return (
-    <Container>
+    <Container visible={visible}>
       {cover && (
         <Image
           unoptimized

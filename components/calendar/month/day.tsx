@@ -6,7 +6,6 @@ import styled, { css, x } from "@xstyled/styled-components"
 
 import { Release } from "@/lib/igdb/types"
 import { backgroundImage } from "@/styles/utils"
-import { preloadImage } from "@/utils"
 
 import { Game } from "./game"
 
@@ -65,13 +64,7 @@ type Props = {
 export const Day = ({ dim, date, releases, onClick }: Props) => {
   const [initial, setInitial] = useState(true)
   const [active, setActive] = useState(0)
-  const upNext = releases?.[active + 1] != null ? active + 1 : 0
-
-  useEffect(() => {
-    if (releases?.[active + 1] == null) return
-
-    void preloadImage(releases?.[active + 1].game.cover?.url)
-  }, [releases?.[active + 1]])
+  const upNext = releases?.[active + 1] != null && active < 4 ? active + 1 : 0
 
   useEffect(() => {
     if (initial) setInitial(false)
@@ -116,7 +109,19 @@ export const Day = ({ dim, date, releases, onClick }: Props) => {
       {releases &&
         releases.slice(0, 5).map((release, i) => (
           <Transition key={release.id} disableInitialAnimation duration={1000}>
-            {active === i && <Game initial={initial} release={release} />}
+            {active === i && (
+              <>
+                <Game initial={initial} release={release} />
+
+                {releases[i + 1] != null && (
+                  <Game
+                    visible={false}
+                    initial={initial}
+                    release={releases[i + 1]}
+                  />
+                )}
+              </>
+            )}
           </Transition>
         ))}
     </Container>
