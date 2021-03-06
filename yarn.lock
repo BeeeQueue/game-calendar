@@ -8227,7 +8227,9 @@ fsevents@~2.3.1:
     react-tiny-crossfade: 2.0.0
     react-tiny-transition: 2.3.0
     react-use: 17.1.1
+    storybook-addon-next-router: 2.0.4
     styled-components: 5.2.1
+    timemachine: 0.3.2
     ts-node: 9.1.1
     tsconfig-paths-webpack-plugin: 3.3.0
     typescript: 4.1.5
@@ -14405,6 +14407,19 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"storybook-addon-next-router@npm:2.0.4":
+  version: 2.0.4
+  resolution: "storybook-addon-next-router@npm:2.0.4"
+  peerDependencies:
+    "@storybook/addon-actions": ^6.0.0
+    "@storybook/addons": ^6.0.0
+    next: ^9.0.0 || ^10.0.0
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  checksum: b57b760bae410ebed2e943d9a42399aca6fd3465109aa030150d17e978af9724651bc6bc5a9ce144c65523292d3f546e244315d9dc0659ec801469b507cf8274
+  languageName: node
+  linkType: hard
+
 "stream-browserify@npm:3.0.0":
   version: 3.0.0
   resolution: "stream-browserify@npm:3.0.0"
@@ -15031,6 +15046,13 @@ fsevents@~2.3.1:
   version: 2.3.8
   resolution: "through@npm:2.3.8"
   checksum: 918d9151680b5355990011eb8c4b02e8cb8cf6e9fb6ea3d3e5a1faa688343789e261634ae35de4ea9167ab029d1e7bac6af2fe61b843931768d405fdc3e8897c
+  languageName: node
+  linkType: hard
+
+"timemachine@npm:0.3.2":
+  version: 0.3.2
+  resolution: "timemachine@npm:0.3.2"
+  checksum: b81a5f480c2e0060223fd4b81540f1d7c9e636739a99bc09a1d13e314c6125e8eb1bbce9f4ae1faba36e0f0494e52eb365c91c734bc5478c700adde0d5a010d5
   languageName: node
   linkType: hard
 
