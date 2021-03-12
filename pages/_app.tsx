@@ -42,7 +42,7 @@ const App = ({
 }: AppProps) => {
   const router = useRouter()
 
-  if (process.env.APP_ENV === "production") {
+  if (process.env.NODE_ENV === "production") {
     useEffect(() => {
       // Initialize Fathom when the app loads
       Fathom.load("NZZTHFCK")
