@@ -15,7 +15,7 @@ module.exports = {
     "plugin:@beequeue/typescript",
   ],
   rules: {
-    "node/no-unpublished-import": "off",
+    "import/no-named-as-default-member": "off",
   },
   overrides: [
     {

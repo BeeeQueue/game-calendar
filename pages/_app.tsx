@@ -1,4 +1,7 @@
+import Fathom from "fathom-client"
 import { AppProps } from "next/app"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
 import Crossfade from "react-tiny-crossfade"
 
 import styled, {
@@ -32,26 +35,47 @@ export const theme = {
   ...defaultTheme,
 }
 
-const MyApp = ({
+const App = ({
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Component,
   pageProps,
-}: AppProps) => (
-  <ThemeProvider theme={theme}>
-    <Preflight />
+}: AppProps) => {
+  const router = useRouter()
 
-    <Root colorMode="light">
-      <Crossfade disableInitialAnimation duration={150}>
-        <Component
-          /* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
-          key={`${pageProps.year}-${pageProps.month}`}
-          {...pageProps}
-        />
-      </Crossfade>
+  useEffect(() => {
+    // Initialize Fathom when the app loads
+    Fathom.load("NZZTHFCK")
 
-      <Navigation />
-    </Root>
-  </ThemeProvider>
-)
+    const onRouteChangeComplete = () => {
+      Fathom.trackPageview()
+    }
 
-export default MyApp
+    // Record a pageview when route changes
+    router.events.on("routeChangeComplete", onRouteChangeComplete)
+
+    // Unassign event listener
+    return () => {
+      router.events.off("routeChangeComplete", onRouteChangeComplete)
+    }
+  }, [])
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Preflight />
+
+      <Root colorMode="light">
+        <Crossfade disableInitialAnimation duration={150}>
+          <Component
+            /* eslint-disable-next-line @typescript-eslint/restrict-template-expressions */
+            key={`${pageProps.year}-${pageProps.month}`}
+            {...pageProps}
+          />
+        </Crossfade>
+
+        <Navigation />
+      </Root>
+    </ThemeProvider>
+  )
+}
+
+export default App

@@ -8009,6 +8009,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fathom-client@npm:3.0.0":
+  version: 3.0.0
+  resolution: "fathom-client@npm:3.0.0"
+  checksum: edbeb15daa71340c939b96c7c8b84f107cc7a47eb2d4d8d4e7e36cb7794892f1fb512890f8e888ef3c7f10cacf771ca315cc36a834ae354fad82bbc6c588c8d3
+  languageName: node
+  linkType: hard
+
 "fault@npm:^1.0.0":
   version: 1.0.4
   resolution: "fault@npm:1.0.4"
@@ -8530,6 +8537,7 @@ fsevents@^1.2.7:
     date-fns: 2.19.0
     envsafe: 2.0.2
     eslint: 7.21.0
+    fathom-client: 3.0.0
     fork-ts-checker-webpack-plugin: 6.1.1
     got: 11.8.2
     husky: 4.3.8
