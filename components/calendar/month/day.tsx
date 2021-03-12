@@ -40,7 +40,7 @@ const Container = styled.div<{
     `};
 `
 
-const BlurredBackground = styled.div.attrs({
+const BlurredBackground = styled.div.attrs<{ blur?: boolean }>({
   blur: true,
 })`
   position: absolute;
