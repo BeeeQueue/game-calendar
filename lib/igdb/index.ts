@@ -1,4 +1,10 @@
-import { addDays, lastDayOfMonth, startOfDay, subDays } from "date-fns"
+import {
+  addDays,
+  lastDayOfMonth,
+  startOfDay,
+  subDays,
+  differenceInMonths,
+} from "date-fns"
 import ms from "ms"
 
 import { config } from "@/config"
@@ -81,6 +87,8 @@ const fetchReleases = async (
   const daysAfter = 6 - getWeekday(lastDayInMonth)
   const lastDateToFetch = startOfDay(addDays(lastDayInMonth, daysAfter + 1))
 
+  const loadAllReleases = differenceInMonths(lastDateToFetch, new Date()) > -3
+
   console.log(
     `Calling /release_dates...\n${firstDateToFetch.toISOString()}\n${lastDateToFetch.toISOString()}`,
   )
@@ -103,7 +111,7 @@ fields
 limit 500;
 where
     game.cover.url != null
-  & game.total_rating != null
+    ${loadAllReleases ? `& game.total_rating != null` : ""}
   & date >= ${Math.round(firstDateToFetch.getTime() / 1000)}
   & date <= ${Math.round(lastDateToFetch.getTime() / 1000)}
 ;
