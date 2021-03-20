@@ -45,7 +45,9 @@ const App = ({
   if (process.env.NODE_ENV === "production") {
     useEffect(() => {
       // Initialize Fathom when the app loads
-      Fathom.load("NZZTHFCK")
+      Fathom.load("NZZTHFCK", {
+        url: "https://mammal.haglund.dev/script.js",
+      })
 
       const onRouteChangeComplete = () => {
         Fathom.trackPageview()
