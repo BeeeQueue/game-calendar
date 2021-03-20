@@ -8293,7 +8293,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fork-ts-checker-webpack-plugin@npm:6.1.1, fork-ts-checker-webpack-plugin@npm:^6.0.4":
+"fork-ts-checker-webpack-plugin@npm:6.2.0":
+  version: 6.2.0
+  resolution: "fork-ts-checker-webpack-plugin@npm:6.2.0"
+  dependencies:
+    "@babel/code-frame": ^7.8.3
+    "@types/json-schema": ^7.0.5
+    chalk: ^4.1.0
+    chokidar: ^3.4.2
+    cosmiconfig: ^6.0.0
+    deepmerge: ^4.2.2
+    fs-extra: ^9.0.0
+    memfs: ^3.1.2
+    minimatch: ^3.0.4
+    schema-utils: 2.7.0
+    semver: ^7.3.2
+    tapable: ^1.0.0
+  checksum: 0600c928014a1a0a24728aca863a998028b2f3cbbd53722ecb1555cfc0723a31662d1b3970e58d1dad646bf16c6da12415ca779e84ea0446dcf74122f0c3d41c
+  languageName: node
+  linkType: hard
+
+"fork-ts-checker-webpack-plugin@npm:^6.0.4":
   version: 6.1.1
   resolution: "fork-ts-checker-webpack-plugin@npm:6.1.1"
   dependencies:
@@ -8538,7 +8558,7 @@ fsevents@^1.2.7:
     envsafe: 2.0.2
     eslint: 7.21.0
     fathom-client: 3.0.0
-    fork-ts-checker-webpack-plugin: 6.1.1
+    fork-ts-checker-webpack-plugin: 6.2.0
     got: 11.8.2
     husky: 4.3.8
     lint-staged: 10.5.4
