@@ -7169,10 +7169,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"envsafe@npm:2.0.2":
-  version: 2.0.2
-  resolution: "envsafe@npm:2.0.2"
-  checksum: 56b94e9ff6a3fdf0ff6e074f133ee5d440a9689472097f7050569bdaad3656f8f61aa02795646b7879ed625c2c64a1764c5bed0eb6300e0de6718cc5c63ca2a6
+"envsafe@npm:2.0.3":
+  version: 2.0.3
+  resolution: "envsafe@npm:2.0.3"
+  checksum: 6d84cb152e31491b571115b4a24d3af91f9b75dd97c3abb7cce734c91b2d5c132722872f4a8fa758524b2d8db0f2eb409597b7e5dd91bcaf3bf817127a5b7206
   languageName: node
   linkType: hard
 
@@ -8542,7 +8542,7 @@ fsevents@^1.2.7:
     cache-manager-ioredis: 2.1.0
     chromatic: 5.7.0
     date-fns: 2.19.0
-    envsafe: 2.0.2
+    envsafe: 2.0.3
     eslint: 7.21.0
     fathom-client: 3.0.0
     fork-ts-checker-webpack-plugin: 6.1.1
