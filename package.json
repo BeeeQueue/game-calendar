@@ -4,7 +4,7 @@
   "private": true,
   "license": "AGPL-3.0-only",
   "engines": {
-    "node": ">=14"
+    "node": ">=16.15"
   },
   "husky": {
     "hooks": {
