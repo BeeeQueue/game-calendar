@@ -3236,12 +3236,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ioredis@npm:*, @types/ioredis@npm:4.22.0":
+"@types/ioredis@npm:*":
   version: 4.22.0
   resolution: "@types/ioredis@npm:4.22.0"
   dependencies:
     "@types/node": "*"
   checksum: 367ddb76f1f96bfb3f3978bb0fef07de688452bc370b2af1f5036daf16f0b11a74864f3d7f9ceefc19ce5b5496a0b533428e9034ab91c40642db6d75e5ebdee1
+  languageName: node
+  linkType: hard
+
+"@types/ioredis@npm:4.28.10":
+  version: 4.28.10
+  resolution: "@types/ioredis@npm:4.28.10"
+  dependencies:
+    "@types/node": "*"
+  checksum: cb7134c60e5262e71123832e086ffa1787c95d0f836b740dad49c2893929a9832ab7702588349c5bdb0555cb3439cd5736e33adfa72e4768040594d80d9f7af5
   languageName: node
   linkType: hard
 
@@ -8550,7 +8559,7 @@ fsevents@^1.2.7:
     "@storybook/react": 6.2.0-beta.14
     "@types/cache-manager": 3.4.0
     "@types/cache-manager-ioredis": 2.0.1
-    "@types/ioredis": 4.22.0
+    "@types/ioredis": 4.28.10
     "@types/ms": 0.7.31
     "@types/node": 14.14.40
     "@types/react": 17.0.3
