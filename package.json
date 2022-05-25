@@ -25,7 +25,7 @@
     "storybook:build": "build-storybook --static-dir public --output-dir .storybook/dist"
   },
   "dependencies": {
-    "@xstyled/styled-components": "2.2.3",
+    "@xstyled/styled-components": "2.5.0",
     "cache-manager": "3.4.1",
     "cache-manager-ioredis": "2.1.0",
     "date-fns": "2.19.0",
