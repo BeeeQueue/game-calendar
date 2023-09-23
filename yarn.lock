@@ -3372,10 +3372,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:14.14.40":
-  version: 14.14.40
-  resolution: "@types/node@npm:14.14.40"
-  checksum: 31e1fe3ebae8b6a27a619d51ce75ed9cd2afe7d19bf5c8ab8daf3f9b6261603fcc77729bd08de735b18ee802e4f4f552cdc22220af4fb00d5618232800613485
+"@types/node@npm:14.18.63":
+  version: 14.18.63
+  resolution: "@types/node@npm:14.18.63"
+  checksum: fdc3d899bb4c4e80055b9ab776922c5e9ca0b2449d993dd9a867d447575cb8a735c99bb0895baeef58cdf1727a75f19ba8e480c10d31b17a84b5ee9d62f9a1da
   languageName: node
   linkType: hard
 
@@ -8552,7 +8552,7 @@ fsevents@^1.2.7:
     "@types/cache-manager-ioredis": 2.0.1
     "@types/ioredis": 4.22.0
     "@types/ms": 0.7.31
-    "@types/node": 14.14.40
+    "@types/node": 14.18.63
     "@types/react": 17.0.3
     "@types/react-dom": 17.0.3
     "@types/styled-components": 5.1.9
